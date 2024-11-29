@@ -1,9 +1,20 @@
 <template>
   <the-logo />
-  <the-hero-alt />
+
+  <router-view />
 </template>
 
-<script setup>
-import TheHeroAlt from '@/components/Home/TheHeroAlt.vue'
+<script>
 import TheLogo from '@/shared/TheLogo.vue'
+
+export default {
+  name: 'App',
+  components: { TheLogo },
+}
 </script>
+
+<style scoped>
+html {
+  scroll-behavior: smooth;
+}
+</style>
