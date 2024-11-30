@@ -1,6 +1,6 @@
 <template>
   <div class="blog-list grid grid-cols-1 md:grid-cols-2 gap-6">
-    <blog-item v-for="post in posts" :key="post.id" :post="post" />
+    <blog-item v-for="blog in blogs" :key="blog.id" :blog="blog" />
   </div>
 </template>
 
@@ -9,14 +9,15 @@ import BlogItem from '@/components/Blog/BlogItem.vue'
 
 export default {
   name: 'BlogList',
-  components: {
-    BlogItem,
-  },
+  components: { BlogItem },
   props: {
-    posts: {
+    blogs: {
       type: Array,
       required: true,
     },
+  },
+  mounted() {
+    console.log('Blogs passed to BlogList:', this.blogs)
   },
 }
 </script>

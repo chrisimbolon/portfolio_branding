@@ -1,13 +1,13 @@
 <template>
-  <div class="blog-item bg-white shadow-lg rounded-lg overflow-hidden">
-    <img :src="post.image" alt="post.title" class="h-48 w-full object-cover" />
-    <div class="p-4">
-      <h3 class="text-xl font-semibold mb-2">{{ post.title }}</h3>
-      <p class="text-gray-600">{{ post.excerpt }}</p>
-      <a :href="post.link" class="inline-block mt-4 text-brand-blue-3 hover:underline">
-        Read more →
-      </a>
-    </div>
+  <div class="blog-item border p-4 rounded-lg shadow hover:shadow-lg">
+    <img :src="blog.image" :alt="blog.title" class="h-40 w-full object-cover rounded" />
+    <h3 class="mt-4 text-xl font-bold">{{ blog.title }}</h3>
+    <p class="mt-2 text-gray-600">{{ blog.excerpt }}</p>
+    <p class="mt-6 text-gray-600">{{ blog.content }}</p>
+
+    <!-- <router-link :to="blog.content" class="text-blue-600 hover:underline mt-4 inline-block">
+      Read More
+    </router-link> -->
   </div>
 </template>
 
@@ -15,16 +15,10 @@
 export default {
   name: 'BlogItem',
   props: {
-    post: {
+    blog: {
       type: Object,
       required: true,
     },
   },
 }
 </script>
-
-<style scoped>
-.blog-item {
-  @apply transition-transform transform hover:scale-105 duration-300 ease-in-out;
-}
-</style>
