@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import ActionButton from '@/shared/ActionButton.vue'
+import ActionButton from '@/components/shared/ActionButton.vue'
 import MainNav from '@/components/Navigation/MainNav.vue'
 import HeadLine from '@/components/Home/HeadLine.vue'
 
