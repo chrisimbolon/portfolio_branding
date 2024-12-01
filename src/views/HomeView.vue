@@ -10,15 +10,17 @@
   <section id="blog" class="blog-section">
     <blog-section />
   </section>
+  <blog-entry-form />
 </template>
 
 <script>
 import TheHero from '@/components/Home/TheHero.vue'
 import WorksSection from '@/components/Works/WorksSection.vue'
 import BlogSection from '@/components/Blog/BlogSection.vue'
+import BlogEntryForm from '@/components/Blog/BlogEntryForm.vue'
 
 export default {
   name: 'HomeView',
-  components: { TheHero, WorksSection, BlogSection },
+  components: { TheHero, WorksSection, BlogSection, BlogEntryForm },
 }
 </script>
