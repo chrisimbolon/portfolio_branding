@@ -18,6 +18,7 @@
         class="w-full p-2 border rounded mb-4"
       />
       <button @click="login" class="w-full bg-blue-500 text-white py-2 rounded">Login</button>
+      <button @click="$emit('close')" class="mt-2 text-gray-500 hover:underline">Cancel</button>
     </div>
   </div>
 </template>
