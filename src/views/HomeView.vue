@@ -1,5 +1,21 @@
 <template>
   <section id="home" class="home-section">
+    <!-- TheHero.vue now handles all sections -->
+    <the-hero />
+  </section>
+</template>
+
+<script>
+import TheHero from '@/components/Home/TheHero.vue'
+
+export default {
+  name: 'HomeView',
+  components: { TheHero },
+}
+</script>
+
+<!-- <template>
+  <section id="home" class="home-section">
     <the-hero />
   </section>
 
@@ -26,4 +42,4 @@ export default {
   name: 'HomeView',
   components: { TheHero, WorksSection, BlogSection, ContactSection },
 }
-</script>
+</script> -->
