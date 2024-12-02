@@ -1,6 +1,5 @@
 <template>
   <section class="work-section relative h-screen bg-gray-200">
-    <h2 class="text-3xl font-bold">My works</h2>
     <work-list :works="works" />
   </section>
 </template>

@@ -5,10 +5,6 @@
       <p>BlogList component is loading...</p>
       <blog-list :blogs="blogs" />
     </div>
-
-    <!-- <div v-if="loading">Loading...</div>
-    <div v-if="error">{{ error }}</div>
-    <blog-list v-else :blogs="blogs" /> -->
   </section>
 </template>
 
