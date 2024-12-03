@@ -2,16 +2,16 @@
   <div class="portfolio-wrapper w-full h-screen flex bg-brand-blue-2">
     <!-- Scrolling Left Section -->
     <div class="scrolling-left flex-[60%] overflow-y-scroll">
-      <section class="section h-screen flex justify-center items-center bg-gray-50">
+      <section id="home" class="section h-screen flex justify-center items-center bg-gray-50">
         <head-line />
       </section>
-      <section class="section h-screen flex justify-center items-center bg-gray-100">
+      <section id="works" class="section h-screen flex justify-center items-center bg-gray-100">
         <works-section />
       </section>
-      <section class="section h-screen flex justify-center items-center bg-gray-200">
+      <section id="blog" class="section h-screen flex justify-center items-center bg-gray-200">
         <blog-section />
       </section>
-      <section class="section h-screen flex justify-center items-center bg-gray-300">
+      <section id="contact" class="section h-screen flex justify-center items-center bg-gray-300">
         <contact-section />
       </section>
     </div>
@@ -22,6 +22,7 @@
     >
       <div class="image-wrapper border-4 border-white rounded-lg overflow-hidden relative">
         <img
+          loading="lazy"
           class="w-[75vw] md:w-auto md:h-[75vh] object-contain"
           src="@/assets/images/chris-closeup1.png"
           alt="Chris Closeup"
@@ -65,12 +66,13 @@ export default {
             opacity: 1,
             y: 0,
             duration: 1,
+            ease: 'power2.out',
             scrollTrigger: {
               trigger: section,
-              start: 'top 80%',
-              end: 'top 20%',
+              start: 'top 85%',
+              end: 'top 15%',
               scrub: true,
-              scroller: '.scrolling-left', // Add this
+              scroller: '.scrolling-left',
               markers: true,
             },
           },

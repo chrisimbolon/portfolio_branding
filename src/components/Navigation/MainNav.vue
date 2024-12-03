@@ -23,10 +23,10 @@ export default {
   data() {
     return {
       menuItems: [
-        { text: 'Home', url: '#home' },
-        { text: 'Works', url: '#works' },
-        { text: 'Blog', url: '#blog' },
-        { text: 'Contact', url: '#contact' },
+        { text: 'Home', url: '/#home' },
+        { text: 'Works', url: '/#works' },
+        { text: 'Blog', url: '/#blog' },
+        { text: 'Contact', url: '/#contact' },
       ],
     }
   },
