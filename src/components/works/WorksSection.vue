@@ -25,7 +25,7 @@ export default {
           id: 2,
           title: 'Fullstack Pizza',
           description: 'a live demo how stacked pizza can be a fun thing',
-          image: '/images/fullstack-pizza.png',
+          image: '/images/FullstackPizzaCard.png',
         },
         {
           id: 3,
@@ -35,9 +35,9 @@ export default {
         },
         {
           id: 4,
-          title: 'Earth Explorer',
+          title: 'Planet Wander',
           description: 'Mark the places in the world that you have visited',
-          image: '/images/earth-explorer.png',
+          image: '/images/PlanetWanderCard.png',
         },
       ],
     }

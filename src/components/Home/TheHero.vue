@@ -2,7 +2,7 @@
   <div class="portfolio-wrapper w-full h-screen flex bg-brand-blue-2">
     <!-- Scrolling Left Section -->
     <div class="scrolling-left flex-[60%] overflow-y-scroll">
-      <section id="home" class="section h-screen flex justify-center items-center bg-gray-50">
+      <section id="home" class="section h-screen flex justify-center items-center">
         <head-line />
       </section>
       <section id="works" class="section h-screen flex justify-center items-center bg-gray-100">
