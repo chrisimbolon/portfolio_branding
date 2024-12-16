@@ -19,7 +19,7 @@ export default {
           title: 'Randomdots.id',
           description:
             'When you feel you like to tell others about some cool spot to eat, drink or just having fun',
-          image: '/images/randomdots.png',
+          image: '/images/Randomdots.png',
         },
         {
           id: 2,
