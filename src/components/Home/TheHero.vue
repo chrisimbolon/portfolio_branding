@@ -1,24 +1,24 @@
 <template>
-  <div class="portfolio-wrapper w-full h-screen flex bg-brand-blue-2">
+  <div class="portfolio-wrapper flex w-full h-screen bg-brand-blue-2">
     <!-- Scrolling Left Section -->
-    <div class="scrolling-left flex-[60%] overflow-y-scroll">
-      <section id="home" class="section h-screen flex justify-center items-center">
+    <div class="scrolling-left flex-[60%] overflow-y-auto h-screen">
+      <section id="home" class="section flex justify-center items-center">
         <head-line />
       </section>
-      <section id="works" class="section h-screen flex justify-center items-center bg-gray-100">
+      <section id="works" class="section flex justify-center items-center bg-gray-100">
         <works-section />
       </section>
-      <section id="blog" class="section h-screen flex justify-center items-center bg-gray-200">
+      <section id="blog" class="section flex justify-center items-center bg-gray-200">
         <blog-section />
       </section>
-      <section id="contact" class="section h-screen flex justify-center items-center bg-gray-300">
+      <section id="contact" class="section flex justify-center items-center bg-gray-300">
         <contact-section />
       </section>
     </div>
 
     <!-- Sticky Right Section -->
     <div
-      class="fixed-right flex-[40%] flex flex-col justify-center items-center h-screen sticky top-0"
+      class="fixed-right flex-[40%] sticky top-0 h-screen flex flex-col justify-center items-center"
     >
       <div class="image-wrapper border-4 border-white rounded-lg overflow-hidden relative">
         <img
@@ -55,55 +55,83 @@ export default {
   name: 'TheHero',
   components: { HeadLine, MainNav, ActionButton, WorksSection, BlogSection, ContactSection },
   setup() {
+    // onMounted below
     onMounted(() => {
-      const sections = document.querySelectorAll('.section')
-      console.log(sections)
-      gsap.utils.toArray('.section').forEach((section) => {
+      const scroller = document.querySelector('.scrolling-left')
+
+      // Register scrollerProxy to ensure GSAP can interact with it
+      ScrollTrigger.scrollerProxy(scroller, {
+        scrollTop(value) {
+          if (arguments.length) scroller.scrollTop = value
+          return scroller.scrollTop
+        },
+      })
+
+      ScrollTrigger.addEventListener('refresh', () => ScrollTrigger.update())
+
+      gsap.utils.toArray('.section').forEach((section, index) => {
         gsap.fromTo(
           section,
-          { opacity: 0, y: 50 },
+          {
+            opacity: 0,
+            y: 80,
+            x: index % 2 === 0 ? -50 : 50, // Alternate swipe directions
+            scale: 0.9,
+            rotate: index % 2 === 0 ? -5 : 5, // Alternate subtle rotations
+          },
           {
             opacity: 1,
             y: 0,
-            duration: 1,
+            x: 0,
+            scale: 1,
+            rotate: 0,
+            duration: 1.2, // Increased duration for more impact
             ease: 'power2.out',
+            delay: index * 0.15, // Stagger delay for each section
             scrollTrigger: {
               trigger: section,
-              start: 'top 85%',
-              end: 'top 15%',
-              scrub: true,
-              scroller: '.scrolling-left',
-              markers: true,
+              start: 'top 70%', // Trigger slightly earlier
+              end: 'top 10%',
+              scroller: '.scrolling-left', // Use the custom scroller
+              markers: true, // Keep markers for debugging
+              toggleActions: 'play none none reverse', // Play and reverse animations
             },
           },
         )
       })
+
+      ScrollTrigger.refresh()
     })
   },
 }
 </script>
 
 <style scoped>
+/* Wrapper to hold the layout */
 .portfolio-wrapper {
   display: flex;
   height: 100vh;
 }
 
+/* Left scrolling section */
+.scrolling-left {
+  overflow-y: auto; /* Changed to auto for smooth scrolling */
+  height: 100vh; /* Full viewport height */
+  position: relative;
+}
+
+/* Sticky right section */
 .fixed-right {
   position: sticky;
   top: 0;
   height: 100vh;
 }
 
-.scrolling-left {
-  overflow-y: scroll;
-}
-
+/* Individual section styling */
 .section {
-  scroll-snap-align: start;
-}
-.section {
+  min-height: 100vh; /* Ensure each section is full height */
   opacity: 0;
-  transform: translateY(50px);
+  transform: translateY(60px);
+  padding: 2rem; /* Optional padding for content */
 }
 </style>

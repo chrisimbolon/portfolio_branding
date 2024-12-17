@@ -31,6 +31,8 @@ export default {
 
 <style scoped>
 .work-item {
+  max-width: 800px;
+  min-height: 300px;
   @apply transition-transform transform hover:scale-105 duration-300 ease-in-out;
 }
 </style>

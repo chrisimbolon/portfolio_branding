@@ -1,5 +1,5 @@
 <template>
-  <section class="work-section relative h-screen bg-gray-200">
+  <section class="work-section min-h-screen bg-gray-200 py-12">
     <work-list :works="works" />
   </section>
 </template>

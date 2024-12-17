@@ -1,5 +1,7 @@
 <template>
-  <div class="works-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+  <!-- <div class="works-list wrapper flex flex-col justify-center gap-5"> -->
+
+  <div class="works-list grid grid-cols-1 gap-6">
     <work-item v-for="work in works" :key="work.id" :work="work" />
   </div>
 </template>
