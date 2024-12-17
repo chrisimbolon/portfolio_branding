@@ -1,27 +1,44 @@
 <template>
   <section class="blog-section">
     <h2 class="text-3xl font-bold">Blog</h2>
-    <div v-if="!loading && !error">
-      <p>BlogList component is loading...</p>
-      <blog-list :blogs="blogs" />
+
+    <div v-if="loading">Loading...</div>
+    <div v-else-if="error">{{ error }}</div>
+    <div v-else>
+      <blog-list :blogs="blogs" @blog-click="openModal" />
     </div>
+
+    <blog-modal v-if="showModal" :blog="selectedBlog" @close="closeModal" />
   </section>
 </template>
 
 <script>
+import BlogModal from '@/components/Blog/BlogModal.vue'
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from '@/firebase'
 import BlogList from '@/components/Blog/BlogList.vue'
 
 export default {
   name: 'BlogSection',
-  components: { BlogList },
+  components: { BlogList, BlogModal },
   data() {
     return {
       blogs: [],
       loading: true,
       error: null,
+      showModal: false,
+      selectedBlog: null,
     }
+  },
+  methods: {
+    openModal(blog) {
+      this.selectedBlog = blog
+      this.showModal = true
+    },
+    closeModal() {
+      this.selectedBlog = null
+      this.showModal = false
+    },
   },
   async mounted() {
     try {

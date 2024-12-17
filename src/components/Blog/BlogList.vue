@@ -1,6 +1,6 @@
 <template>
   <div class="blog-list grid grid-cols-1 md:grid-cols-2 gap-6">
-    <blog-item v-for="blog in blogs" :key="blog.id" :blog="blog" />
+    <blog-item v-for="blog in blogs" :key="blog.id" :blog="blog" @click="handleBlogClick(blog)" />
   </div>
 </template>
 
@@ -14,6 +14,11 @@ export default {
     blogs: {
       type: Array,
       required: true,
+    },
+  },
+  methods: {
+    handleBlogClick(blog) {
+      this.$emit('blog-click', blog) // Emit the clicked blog
     },
   },
   mounted() {
