@@ -1,5 +1,5 @@
 <template>
-  <div class="portfolio-wrapper flex w-full h-screen bg-brand-blue-2">
+  <div class="portfolio-wrapper flex w-full h-screen bg-brand-white-1">
     <!-- Scrolling Left Section -->
     <div class="scrolling-left flex-[60%] overflow-y-auto h-screen">
       <section id="home" class="section flex justify-center items-center">

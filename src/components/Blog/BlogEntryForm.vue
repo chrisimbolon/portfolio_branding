@@ -177,15 +177,3 @@ export default {
   color: red;
 }
 </style>
-
-<style scoped>
-.blog-entry-form {
-  @apply max-w-lg mx-auto mt-8;
-}
-.success {
-  color: green;
-}
-.error {
-  color: red;
-}
-</style>
