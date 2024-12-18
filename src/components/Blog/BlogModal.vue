@@ -3,8 +3,8 @@
   <div class="modal-overlay" @click.self="$emit('close')">
     <div class="modal-content">
       <button class="close-btn" @click="$emit('close')">&times;</button>
-      <img :src="blog.image" :alt="blog.title" class="h-40 w-full object-cover rounded" />
       <h2>{{ blog.title }}</h2>
+      <img :src="blog.image" :alt="blog.title" class="h-40 w-full object-cover rounded" />
       <p>{{ blog.content }}</p>
     </div>
   </div>
@@ -15,30 +15,13 @@ import { gsap } from 'gsap'
 
 export default {
   props: ['blog'],
-  methods: {
-    openModal(blog) {
-      this.selectedBlog = blog
-      this.showModal = true
-      this.$nextTick(() => {
-        gsap.fromTo(
-          '.modal-content',
-          { opacity: 0, scale: 0.8 },
-          { opacity: 1, scale: 1, duration: 0.5, ease: 'power2.out' },
-        )
-      })
-    },
-    closeModal() {
-      gsap.to('.modal-content', {
-        opacity: 0,
-        scale: 0.8,
-        duration: 0.3,
-        ease: 'power2.in',
-        onComplete: () => {
-          this.selectedBlog = null
-          this.showModal = false
-        },
-      })
-    },
+  mounted() {
+    // GSAP animation when the modal is opened
+    gsap.fromTo(
+      '.modal-content',
+      { opacity: 0, scale: 0.8 },
+      { opacity: 1, scale: 1, duration: 0.5, ease: 'power2.out' },
+    )
   },
 }
 </script>
@@ -62,7 +45,6 @@ export default {
   border-radius: 10px;
   max-width: 600px;
   width: 90%;
-  animation: slideIn 0.3s ease-out;
 }
 .close-btn {
   position: absolute;
@@ -72,15 +54,5 @@ export default {
   border: none;
   font-size: 2rem;
   cursor: pointer;
-}
-@keyframes slideIn {
-  from {
-    transform: translateY(-20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
 }
 </style>
