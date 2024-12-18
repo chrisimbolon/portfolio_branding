@@ -2,40 +2,33 @@
   <div
     class="work-item border rounded-lg overflow-hidden shadow-lg bg-brand-white-1 text-brand-blue-3"
   >
-    <!-- Image Section -->
     <img :src="work.image" :alt="work.title" class="h-80 w-full object-cover" loading="lazy" />
 
-    <!-- Info Section -->
     <div class="p-4">
-      <!-- Title and Description -->
-      <div class="info mb-4">
-        <h3 class="text-xl font-bold mb-1">{{ work.title }}</h3>
-        <p class="text-sm text-slate-600">{{ work.description }}</p>
-      </div>
+      <div class="flex justify-between items-center mb-2">
+        <!-- Title -->
+        <h3 class="text-xl font-bold">{{ work.title }}</h3>
 
-      <!-- Tags Section -->
-      <div class="tags mb-4">
-        <ul class="flex flex-wrap gap-2">
-          <li
-            v-for="(tag, index) in work.tags"
-            :key="index"
-            class="tag-item text-xs font-semibold bg-blue-100 text-blue-600 px-2 py-1 rounded-lg"
-          >
-            {{ tag }}
-          </li>
-        </ul>
-      </div>
-
-      <!-- Link Section -->
-      <div class="link">
-        <a
-          :href="work.link"
-          target="_blank"
-          class="inline-block mt-4 text-brand-blue-3 hover:underline font-medium"
-        >
+        <!-- Link -->
+        <a :href="work.link" target="_blank" class="text-brand-blue-3 hover:underline font-medium">
           View Project
         </a>
       </div>
+
+      <!-- Description -->
+      <!-- <p class="text-sm text-slate-600 mb-3">{{ work.description }}</p> -->
+      <p class="text-sm text-brand-blue-2 mb-3">{{ work.description }}</p>
+
+      <!-- Tags -->
+      <ul class="flex flex-wrap gap-2">
+        <li
+          v-for="(tag, index) in work.tags"
+          :key="index"
+          class="text-xs bg-slate-200 text-brand-blue-2 rounded-md px-2 py-1"
+        >
+          {{ tag }}
+        </li>
+      </ul>
     </div>
   </div>
 </template>

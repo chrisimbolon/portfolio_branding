@@ -1,5 +1,6 @@
 <template>
-  <section class="work-section min-h-screen bg-brand-white-1 py-12">
+  <section class="work-section min-h-screen bg-brand-white-1 py-5 text-brand-blue-3">
+    <h2 class="text-3xl font-bold">Works</h2>
     <work-list :works="works" />
   </section>
 </template>
@@ -17,8 +18,7 @@ export default {
         {
           id: 1,
           title: 'Randomdots.id',
-          description:
-            'When you feel you like to tell others about some cool spot to eat, drink or just having fun',
+          description: 'Share cool spots to eat, drink, or just have fun !',
           image: '/images/Randomdots.png',
           tags: ['Node.js', 'Express', 'MongoDB', 'Bootstrap'],
         },

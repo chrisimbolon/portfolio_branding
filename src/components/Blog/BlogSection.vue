@@ -1,5 +1,5 @@
 <template>
-  <section class="blog-section">
+  <section class="blog-section min-h-screen py-5">
     <h2 class="text-3xl font-bold">Blog</h2>
 
     <div v-if="loading">Loading...</div>
