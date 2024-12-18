@@ -1,5 +1,5 @@
 <template>
-  <section class="work-section min-h-screen bg-gray-200 py-12">
+  <section class="work-section min-h-screen bg-brand-white-1 py-12">
     <work-list :works="works" />
   </section>
 </template>
@@ -20,24 +20,28 @@ export default {
           description:
             'When you feel you like to tell others about some cool spot to eat, drink or just having fun',
           image: '/images/Randomdots.png',
+          tags: ['Node.js', 'Express', 'MongoDB', 'Bootstrap'],
         },
         {
           id: 2,
           title: 'Fullstack Pizza',
           description: 'a live demo how stacked pizza can be a fun thing',
           image: '/images/FullstackPizzaCard.png',
+          tags: ['Javascript', 'HTML', 'CSS'],
         },
         {
           id: 3,
           title: 'Django Taekwondo Coaches',
           description: 'you can organize lots of Taekwondo Coaches in one web app',
           image: '/images/taekwondo-coaches.png',
+          tags: ['Python', 'Django', 'Bootstrap', 'MySql'],
         },
         {
           id: 4,
           title: 'Planet Wander',
           description: 'Mark the places in the world that you have visited',
           image: '/images/PlanetWanderCard.png',
+          tags: ['Javascript', 'React', 'HTML', 'CSS'],
         },
       ],
     }

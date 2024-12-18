@@ -9,9 +9,9 @@
       <p>my journey into meaningful Digital Solutions with</p>
     </div>
     <p
-      class="text-3xl sm:text-4xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-brand-blue-2 to-brand-accent-1 mb-4"
+      class="text-3xl sm:text-4xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-brand-blue-2 to-brand-accent-1 leading-relaxed overflow-visible"
     >
-      <span>{{ currentPhrase }}</span>
+      <span class="inline-block pb-[3px]">{{ currentPhrase }}</span>
     </p>
   </main>
 </template>
