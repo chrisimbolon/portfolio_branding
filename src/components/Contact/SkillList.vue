@@ -10,11 +10,17 @@
         </div>
         <div class="skill-info flex-1">
           <h3 class="font-medium">{{ skill.name }}</h3>
-          <div class="progress-bar bg-gray-300 rounded-full h-2 mt-2">
-            <div
-              class="bg-blue-500 h-2 rounded-full"
-              :style="{ width: skill.proficiency + '%' }"
-            ></div>
+          <div class="container flex justify-center items-stretch">
+            <div class="service">
+              <span>
+           
+              </span>
+
+              <p>
+                {{ skill.description }}
+              </p>
+            </div>
+           
           </div>
         </div>
       </li>
@@ -28,12 +34,42 @@ export default {
   data() {
     return {
       skills: [
-        { name: 'JavaScript', proficiency: 90, icon: 'fab fa-js-square' },
-        { name: 'Vue.js', proficiency: 85, icon: 'fab fa-vuejs' },
-        { name: 'HTML', proficiency: 95, icon: 'fab fa-html5' },
-        { name: 'CSS', proficiency: 80, icon: 'fab fa-css3-alt' },
-        { name: 'Tailwind CSS', proficiency: 75, icon: 'fas fa-paint-brush' },
-        { name: 'Firebase', proficiency: 70, icon: 'fas fa-fire' },
+        {
+          name: 'Front-End and Responsive Design',
+          description:
+            'Crafting dynamic and visually engaging interfaces with seamless responsiveness across all devices',
+          icon: 'fa-solid fa-laptop-code',
+        },
+        {
+          name: 'Back-end Development',
+          description:
+            'Building robust server-side logic and APIs to power scalable and secure applications',
+          icon: 'fa-solid fa-server',
+        },
+        {
+          name: 'Database Management',
+          description:
+            'Designing, optimizing, and managing databases for efficient data storage and retrieval',
+          icon: 'fa-solid fa-database',
+        },
+        {
+          name: 'UI/UX Design',
+          description:
+            'Creating intuitive, user-friendly designs that blend aesthetics with functionality.',
+          icon: 'fa-solid fa-palette',
+        },
+        {
+          name: 'Version Control',
+          description:
+            'Streamlining collaboration and maintaining code integrity with Git and modern versioning tools.',
+          icon: 'fas fa-paint-brush',
+        },
+        {
+          name: 'Problem Solving',
+          description:
+            'Breaking down challenges and delivering innovative, effective solutions in coding and beyond.',
+          icon: 'fa-solid fa-lightbulb',
+        },
       ],
     }
   },
@@ -44,7 +80,5 @@ export default {
 .skill-item {
   align-items: center;
 }
-.progress-bar div {
-  transition: width 0.3s ease-in-out;
-}
+
 </style>

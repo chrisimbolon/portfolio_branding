@@ -19,7 +19,7 @@ export default {
           id: 1,
           title: 'Randomdots.id',
           description: 'Share cool spots to eat, drink, or just have fun !',
-          image: '/images/Randomdots.png',
+          image: '/images/RandomdotsCard.png',
           tags: ['Node.js', 'Express', 'MongoDB', 'Bootstrap'],
         },
         {
@@ -33,7 +33,7 @@ export default {
           id: 3,
           title: 'Django Taekwondo Coaches',
           description: 'you can organize lots of Taekwondo Coaches in one web app',
-          image: '/images/taekwondo-coaches.png',
+          image: '/images/DjangoTaekwondoCard.png',
           tags: ['Python', 'Django', 'Bootstrap', 'MySql'],
         },
         {
