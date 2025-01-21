@@ -5,21 +5,22 @@
       <li
         v-for="(skill, index) in skills"
         :key="index"
-        class="skill-item flex items-center gap-4 bg-white shadow-sm rounded-lg p-4 hover:shadow-md transition-shadow"
+        class="skill-item flex flex-col items-center bg-white shadow-sm rounded-lg p-6 hover:shadow-md transition-shadow text-center"
       >
         <div
-          class="icon w-12 h-12 flex items-center justify-center bg-blue-500 rounded-full text-white text-2xl"
+          class="icon w-16 h-16 flex items-center justify-center bg-blue-500 rounded-full text-white text-2xl mb-4"
         >
           <i :class="skill.icon"></i>
         </div>
         <div class="skill-info">
-          <h3 class="font-semibold text-lg text-gray-700 mb-1">{{ skill.name }}</h3>
+          <h3 class="font-semibold text-lg text-gray-700 mb-2">{{ skill.name }}</h3>
           <p class="text-sm text-gray-600">{{ skill.description }}</p>
         </div>
       </li>
     </ul>
   </div>
 </template>
+
 
 
 <script>
