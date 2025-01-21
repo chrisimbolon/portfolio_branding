@@ -1,32 +1,26 @@
 <template>
-  <div class="skills-section py-10">
-    <h2 class="text-2xl font-bold mb-6">My Skills</h2>
-    <ul class="grid grid-cols-2 gap-6">
-      <li v-for="(skill, index) in skills" :key="index" class="skill-item flex items-center gap-4">
+  <div class="skills-section py-10 bg-gray-50">
+    <h2 class="text-3xl font-bold mb-8 text-center text-gray-800">My Skills</h2>
+    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+      <li
+        v-for="(skill, index) in skills"
+        :key="index"
+        class="skill-item flex items-center gap-4 bg-white shadow-sm rounded-lg p-4 hover:shadow-md transition-shadow"
+      >
         <div
-          class="icon w-8 h-8 flex items-center justify-center bg-blue-500 rounded-full text-white"
+          class="icon w-12 h-12 flex items-center justify-center bg-blue-500 rounded-full text-white text-2xl"
         >
           <i :class="skill.icon"></i>
         </div>
-        <div class="skill-info flex-1">
-          <h3 class="font-medium">{{ skill.name }}</h3>
-          <div class="container flex justify-center items-stretch">
-            <div class="service">
-              <span>
-           
-              </span>
-
-              <p>
-                {{ skill.description }}
-              </p>
-            </div>
-           
-          </div>
+        <div class="skill-info">
+          <h3 class="font-semibold text-lg text-gray-700 mb-1">{{ skill.name }}</h3>
+          <p class="text-sm text-gray-600">{{ skill.description }}</p>
         </div>
       </li>
     </ul>
   </div>
 </template>
+
 
 <script>
 export default {
@@ -62,7 +56,7 @@ export default {
           name: 'Version Control',
           description:
             'Streamlining collaboration and maintaining code integrity with Git and modern versioning tools.',
-          icon: 'fas fa-paint-brush',
+          icon: 'fa-solid fa-code-branch',
         },
         {
           name: 'Problem Solving',
@@ -77,6 +71,14 @@ export default {
 </script>
 
 <style scoped>
+
+.skills-section {
+  background-color: #f9fafb;
+}
+.skill-item:hover .icon {
+  background-color: #2563eb; /* Slightly darker blue for hover */
+}
+
 .skill-item {
   align-items: center;
 }

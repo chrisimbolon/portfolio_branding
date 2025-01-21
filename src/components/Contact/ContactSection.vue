@@ -1,6 +1,8 @@
 <template>
-  <skill-list />
-  <contact-form />
+  <div class="flex flex-col gap-8">
+    <contact-form />
+    <skill-list />
+  </div>
 </template>
 <script>
 import ContactForm from './ContactForm.vue'
@@ -10,3 +12,7 @@ export default {
   components: { ContactForm, SkillList },
 }
 </script>
+
+<style scoped>
+
+</style>
