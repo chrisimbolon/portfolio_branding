@@ -1,6 +1,20 @@
 <template>
   <div class="contact-form-section py-10">
-    <h2 class="text-3xl font-bold mb-8 text-center text-gray-800">Get In Touch</h2>
+    <div class="flex flex-col gap-4 text-gray-700">
+      <div class="flex items-center gap-3">
+        <h3 class="text-lg font-medium">Reach out via</h3>
+        <div class="icon-wrap flex items-center gap-2">
+          <i class="fa-solid fa-envelope text-blue-500 text-2xl"></i>
+          <a
+            href="mailto:christyansimbolon@mail.com"
+            class="text-blue-500 hover:underline text-lg font-semibold"
+          >
+            christyansimbolon@mail.com
+          </a>
+        </div>
+      </div>
+      <h3 class="text-lg font-medium">Or drop a message below</h3>
+    </div>
     <div class="max-w-lg mx-auto bg-white shadow-md rounded-lg p-6">
       <form @submit.prevent="handleSubmit" class="space-y-6">
         <div>
@@ -47,7 +61,6 @@
   </div>
 </template>
 
-
 <script>
 import { getFirestore, collection, addDoc } from 'firebase/firestore'
 
@@ -82,8 +95,8 @@ export default {
 
 <style scoped>
 .contact-form-section {
-  background-color: #f9f9f9;
+  /* background-color: #f9f9f9; */
   max-width: 600px;
-  /* margin: 0 auto; */
+  margin: 0 auto;
 }
 </style>

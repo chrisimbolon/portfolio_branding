@@ -1,5 +1,5 @@
 <template>
-  <div class="skills-section py-10 bg-gray-50">
+  <div class="skills-section py-10 ">
     <h2 class="text-3xl font-bold mb-8 text-center text-gray-800">My Skills</h2>
     <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
       <li
@@ -73,9 +73,7 @@ export default {
 
 <style scoped>
 
-.skills-section {
-  background-color: #f9fafb;
-}
+
 .skill-item:hover .icon {
   background-color: #2563eb; /* Slightly darker blue for hover */
 }
