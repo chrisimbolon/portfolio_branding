@@ -11,7 +11,7 @@
       <section id="blog" class="section flex justify-center items-center bg-gray-200">
         <blog-section />
       </section>
-      <section id="contact" class="section flex justify-center items-center bg-gray-300">
+      <section id="contact" class="section flex justify-center items-center bg-brand-platinum-1">
         <contact-section />
       </section>
     </div>

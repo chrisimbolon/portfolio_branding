@@ -1,8 +1,8 @@
 <template>
-  <div class="skills-section py-10">
-    <div class="card flex flex-col max-w-4xl mx-auto m-8 p-8 bg-none rounded-md shadow-lg">
-      <h2 class="font-bold text-2xl text-gray-800">Short background</h2>
-      <p class="flex-grow mt-4 text-gray-700 leading-relaxed">
+  <div class="skills-section px-5 bg-gradient-to-b from-[#D9DADB] to-[#e5e4e2]">
+    <div class="card flex flex-col max-w-4xl mx-auto m-6 p-6 rounded-md shadow-lg">
+      <h2 class="font-bold text-2xl text-gray-800 text-center">Short background</h2>
+      <p class="flex-grow p-4  text-gray-600 leading-relaxed">
         I’ve always been fascinated by the intersection of creativity and technology. At the age of
         45, I made the bold decision to switch careers and turn my lifelong passion into a
         profession. Diving headfirst into the world of development, I’ve honed my skills in
@@ -13,15 +13,15 @@
         experiences.
       </p>
     </div>
-    <h2 class="text-3xl font-bold mb-8 text-center text-gray-800">My Skills</h2>
+    <h2 class="text-2xl font-bold  mt-12 mb-5  text-center text-gray-800">My Skills</h2>
     <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
       <li
         v-for="(skill, index) in skills"
         :key="index"
-        class="skill-item flex flex-col items-center bg-white shadow-sm rounded-lg p-6 hover:shadow-md transition-shadow text-center"
+        class="skill-item flex flex-col items-center border border-white bg-none shadow-sm rounded-lg p-6 hover:shadow-md transition-shadow text-center"
       >
         <div
-          class="icon w-16 h-16 flex items-center justify-center bg-blue-500 rounded-full text-white text-2xl mb-4"
+          class="icon w-16 h-16 flex items-center justify-center bg-brand-blue-2 rounded-full text-white text-2xl mb-4"
         >
           <i :class="skill.icon"></i>
         </div>
@@ -84,7 +84,7 @@ export default {
 
 <style scoped>
 .skill-item:hover .icon {
-  background-color: #2563eb; /* Slightly darker blue for hover */
+  background-color: #548FC9; /* Slightly darker blue for hover */
 }
 
 .skill-item {

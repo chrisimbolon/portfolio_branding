@@ -14,6 +14,9 @@ export default {
         'brand-blue-3': '#264F79 ',
         'brand-white-1': '#F1F6F8',
         'brand-accent-1': '#FF582B',
+        'brand-silver-1': '#DCDDDE',
+        'brand-platinum-1': '#E9EAEA',
+
       },
       boxShadow: {
         blue: '0 0 3px 3px #4285f4',
