@@ -1,6 +1,6 @@
 <template>
-  <div class="contact-form-section py-10">
-    <div class="flex flex-col gap-4 text-gray-700">
+  <div class="contact-form-section py-8">
+    <div class="flex flex-col gap-4 mb-5 text-gray-700 ">
       <div class="flex items-center gap-3">
         <h3 class="text-lg font-medium">Reach out via</h3>
         <div class="icon-wrap flex items-center gap-2">
@@ -15,14 +15,14 @@
       </div>
       <h3 class="text-lg font-medium">Or drop a message below</h3>
     </div>
-    <div class="max-w-lg mx-auto bg-white shadow-md rounded-lg p-6">
+    <div class="max-w-lg mx-auto border border-gray-700 bg-none shadow-lg rounded-lg p-6">
       <form @submit.prevent="handleSubmit" class="space-y-6">
         <div>
           <label class="block font-medium mb-2 text-gray-700">Name</label>
           <input
             v-model="formData.name"
             type="text"
-            class="w-full p-3 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300"
+            class="w-full p-3 border border-gray-400 rounded-lg bg-gray-200 focus:ring focus:ring-blue-300"
             placeholder="Your name"
             required
           />
@@ -32,7 +32,7 @@
           <input
             v-model="formData.email"
             type="email"
-            class="w-full p-3 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300"
+            class="w-full p-3 border border-x-gray-400 rounded-lg bg-gray-200 focus:ring focus:ring-blue-300"
             placeholder="Your email"
             required
           />
@@ -41,7 +41,7 @@
           <label class="block font-medium mb-2 text-gray-700">Message</label>
           <textarea
             v-model="formData.message"
-            class="w-full p-3 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300"
+            class="w-full p-3 border border-x-gray-400 rounded-lg bg-gray-200 focus:ring focus:ring-blue-300"
             rows="5"
             placeholder="Your message"
             required
@@ -49,7 +49,7 @@
         </div>
         <button
           type="submit"
-          class="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition-colors"
+          class="w-full bg-brand-accent-1 text-white py-3 rounded-lg hover:shadow-blue transition-colors"
         >
           Send Message
         </button>

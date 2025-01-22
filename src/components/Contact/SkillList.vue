@@ -1,5 +1,18 @@
 <template>
-  <div class="skills-section py-10 ">
+  <div class="skills-section py-10">
+    <div class="card flex flex-col max-w-4xl mx-auto m-8 p-8 bg-none rounded-md shadow-lg">
+      <h2 class="font-bold text-2xl text-gray-800">Short background</h2>
+      <p class="flex-grow mt-4 text-gray-700 leading-relaxed">
+        I’ve always been fascinated by the intersection of creativity and technology. At the age of
+        45, I made the bold decision to switch careers and turn my lifelong passion into a
+        profession. Diving headfirst into the world of development, I’ve honed my skills in
+        front-end and responsive design, back-end development, and database management. With a
+        strong foundation in UI/UX design, version control, and problem-solving, I’m dedicated to
+        creating innovative, user-centric solutions that bridge design and technology. I thrive on
+        tackling complex challenges and delivering seamless, scalable applications that enhance user
+        experiences.
+      </p>
+    </div>
     <h2 class="text-3xl font-bold mb-8 text-center text-gray-800">My Skills</h2>
     <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
       <li
@@ -20,8 +33,6 @@
     </ul>
   </div>
 </template>
-
-
 
 <script>
 export default {
@@ -72,8 +83,6 @@ export default {
 </script>
 
 <style scoped>
-
-
 .skill-item:hover .icon {
   background-color: #2563eb; /* Slightly darker blue for hover */
 }
@@ -81,5 +90,4 @@ export default {
 .skill-item {
   align-items: center;
 }
-
 </style>
