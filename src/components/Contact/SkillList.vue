@@ -13,7 +13,7 @@
         experiences.
       </p>
     </div>
-    <h2 class="text-2xl font-bold mt-12 mb-5 text-center text-brand-blue-3">My Skills</h2>
+    <h2 class="text-2xl font-bold mt-12 mb-5 text-center text-brand-blue-3">My skills</h2>
     <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
       <li
         v-for="(skill, index) in skills"
@@ -29,7 +29,7 @@
           <i :class="skill.icon"></i>
         </div>
         <div class="skill-info">
-          <h3 class="font-semibold text-lg text-brand-blue-3 mb-2">{{ skill.name }}</h3>
+          <h4 class="font-bold text-brand-blue-3 mb-2">{{ skill.name }}</h4>
           <p class="text-sm text-brand-blue-2">{{ skill.description }}</p>
         </div>
       </li>

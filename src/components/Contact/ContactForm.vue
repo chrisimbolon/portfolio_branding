@@ -1,6 +1,6 @@
 <template>
-  <div class="contact-form-section py-8">
-    <div class="flex flex-col gap-4 mb-5 text-gray-700 ">
+  <div class="contact-form-section py-0">
+    <div class="flex flex-col gap-4 mb-5 text-gray-700">
       <div class="flex items-center gap-3">
         <h3 class="text-lg font-medium">Reach out via</h3>
         <div class="icon-wrap flex items-center gap-2">
@@ -57,6 +57,29 @@
       <p v-if="submissionMessage" class="mt-4 text-center text-green-600 font-medium">
         {{ submissionMessage }}
       </p>
+    </div>
+  </div>
+  <div class="flex items-center mb-2">
+    <p class="p-4 text-brand-blue-2">connect with me elsewhere on the web →</p>
+    <div class="icon-wrap flex items-center gap-3 text-2xl">
+      <a
+        href="https://www.linkedin.com/in/your-profile"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-brand-blue-3 hover:text-brand-blue-2 transition-colors"
+        aria-label="LinkedIn"
+      >
+        <i class="fa-brands fa-linkedin"></i>
+      </a>
+      <a
+        href="https://github.com/chrisimbolon"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-brand-blue-3 hover:text-brand-blue-2 transition-colors"
+        aria-label="GitHub"
+      >
+        <i class="fa-brands fa-github"></i>
+      </a>
     </div>
   </div>
 </template>
