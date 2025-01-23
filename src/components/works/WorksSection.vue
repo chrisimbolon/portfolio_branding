@@ -1,6 +1,7 @@
 <template>
-  <section class="work-section min-h-screen bg-brand-white-1 py-5 text-brand-blue-3">
-    <h2 class="text-3xl font-bold">Works</h2>
+  <section class="work-section min-h-screen bg-brand-white-1 py-5 ">
+    <h2 class="text-4xl font-extrabold text-center text-brand-blue-3">Works</h2>
+    <h3 class="flex-grow p-4 text-brand-blue-2 leading-relaxed">Here are some of my projects, where I’ve combined creativity and technical expertise to deliver practical, user-friendly solutions</h3>
     <work-list :works="works" />
   </section>
 </template>

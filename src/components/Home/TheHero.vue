@@ -20,7 +20,23 @@
     <div
       class="fixed-right flex-[40%] sticky top-0 h-screen flex flex-col justify-center items-center"
     >
-      <div class="image-wrapper border-4 border-white rounded-lg overflow-hidden relative shadow-xl hover:shadow-2xl transition-shadow duration-300">
+    <div class="image-wrapper border-4 border-white rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col items-center relative">
+  <img
+    loading="lazy"
+    class="w-full md:max-w-[600px] h-auto object-contain"
+    src="@/assets/images/chris-closeup1.png"
+    alt="Chris Closeup"
+  />
+  <div class="button-container mt-4 md:absolute md:bottom-4 w-full flex justify-center">
+    <action-button
+      btnText="Contact me"
+      class="bg-brand-blue-2 text-white px-6 py-2 rounded-md shadow-md hover:shadow-lg transition-shadow"
+    />
+  </div>
+</div>
+
+
+      <!-- <div class="image-wrapper border-4 border-white rounded-lg overflow-hidden relative shadow-xl hover:shadow-2xl transition-shadow duration-300">
         <img
           loading="lazy"
           class="w-[75vw] md:w-auto md:h-[75vh] object-contain"
@@ -31,7 +47,7 @@
           btnText="Contact me"
           class="absolute bottom-4 left-1/2 transform -translate-x-1/2"
         />
-      </div>
+      </div> -->
       <main-nav class="absolute bottom-0 left-1/2 transform -translate-x-1/2 z-10" />
     </div>
   </div>
