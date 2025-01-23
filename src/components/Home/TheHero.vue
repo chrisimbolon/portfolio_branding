@@ -20,7 +20,7 @@
     <div
       class="fixed-right flex-[40%] sticky top-0 h-screen flex flex-col justify-center items-center"
     >
-      <div class="image-wrapper border-4 border-white rounded-lg overflow-hidden relative">
+      <div class="image-wrapper border-4 border-white rounded-lg overflow-hidden relative shadow-xl hover:shadow-2xl transition-shadow duration-300">
         <img
           loading="lazy"
           class="w-[75vw] md:w-auto md:h-[75vh] object-contain"
