@@ -1,5 +1,5 @@
 <template>
-  <div class="blog-list grid grid-cols-1 md:grid-cols-2 gap-6">
+  <div class="blog-list grid grid-cols-1 custom-lg:grid-cols-2 gap-6">
     <blog-item v-for="blog in blogs" :key="blog.id" :blog="blog" @click="handleBlogClick(blog)" />
   </div>
 </template>

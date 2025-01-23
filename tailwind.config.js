@@ -21,6 +21,9 @@ export default {
       boxShadow: {
         blue: '0 0 3px 3px #4285f4',
       },
+      screens: {
+        'custom-lg': '1200px', // Add a custom breakpoint
+      },
     },
   },
   plugins: [],

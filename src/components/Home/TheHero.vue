@@ -20,13 +20,23 @@
     <div
       class="fixed-right flex-[40%] sticky top-0 h-screen flex flex-col justify-center items-center"
     >
-    <div class="image-wrapper border-4 border-white rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col items-center relative">
+    <div
+  class="image-wrapper group border-4 border-white rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col items-center relative"
+>
   <img
     loading="lazy"
     class="w-full md:max-w-[600px] h-auto object-contain"
-    src="@/assets/images/chris-closeup1.png"
+    src="@/assets/images/chris-closeup.png"
     alt="Chris Closeup"
   />
+  <!-- Overlay -->
+  <div
+    class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 flex items-center justify-center transition-all duration-300"
+  >
+    <p class="text-white text-lg font-semibold opacity-0 group-hover:opacity-100">
+      Let’s Connect!
+    </p>
+  </div>
   <div class="button-container mt-4 md:absolute md:bottom-4 w-full flex justify-center">
     <action-button
       btnText="Contact me"
