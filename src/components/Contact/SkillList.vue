@@ -14,7 +14,7 @@
       </p>
     </div>
     <h2 class="text-2xl font-bold mt-12 mb-5 text-center text-brand-blue-3">My skills</h2>
-    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+    <ul class="grid grid-cols-1 sm:grid-cols-2 custom-lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
       <li
         v-for="(skill, index) in skills"
         :key="index"

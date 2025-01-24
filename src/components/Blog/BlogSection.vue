@@ -8,7 +8,12 @@
       <blog-list :blogs="blogs" @blog-click="openModal" />
     </div>
 
-    <blog-modal v-if="showModal" :blog="selectedBlog" @close="closeModal" />
+    <!-- Pass showModal and selectedBlog to BlogModal -->
+    <blog-modal
+      :show="showModal"
+      :blog="selectedBlog"
+      @close="closeModal"
+    />
   </section>
 </template>
 
@@ -36,15 +41,15 @@ export default {
       this.showModal = true
     },
     closeModal() {
-      this.selectedBlog = null
       this.showModal = false
+      this.selectedBlog = null
     },
   },
   async mounted() {
     try {
-      const querySnapshot = await getDocs(collection(db, 'blogs')) // Update "blogs" to your collection name
+      const querySnapshot = await getDocs(collection(db, 'blogs'))
       const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-      console.log('Fetched Blogs:', data) // Log the data to check what you get
+      console.log('Fetched Blogs:', data)
       this.blogs = data
     } catch (err) {
       console.error('Error fetching blogs:', err)

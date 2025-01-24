@@ -23,6 +23,7 @@ export default {
       },
       screens: {
         'custom-lg': '1200px', // Add a custom breakpoint
+        'sm850': '850px', // Custom breakpoint
       },
     },
   },
