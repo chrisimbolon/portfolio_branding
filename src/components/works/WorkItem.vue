@@ -1,25 +1,22 @@
 <template>
   <div
-    class="work-item w-full sm:max-w-md md:max-w-lg lg:max-w-2xl border rounded-lg overflow-hidden shadow-lg bg-brand-white-1 text-brand-blue-3 transition-transform transform hover:scale-105 duration-300 ease-in-out 
-    scale-100 sm850:scale-85 custom-lg:scale-90"
+    class="work-item relative flex flex-col border rounded-lg overflow-hidden shadow-lg bg-brand-white-1 text-brand-blue-3 transition-transform transform hover:scale-105 duration-300 ease-in-out"
   >
-    <img :src="work.image" :alt="work.title" class="h-auto w-full object-cover" loading="lazy" />
+    <img
+      :src="work.image"
+      :alt="work.title"
+      class="h-auto w-full object-cover"
+      loading="lazy"
+    />
 
-    <div class="p-4">
+    <div class="p-4 flex-1">
       <div class="flex justify-between items-center mb-2">
-        <!-- Title -->
         <h3 class="text-xl font-bold">{{ work.title }}</h3>
-
-        <!-- Link -->
         <a :href="work.link" target="_blank" class="text-brand-blue-3 hover:underline font-medium">
           View Project
         </a>
       </div>
-
-      <!-- Description -->
       <p class="text-sm text-brand-blue-2 mb-3">{{ work.description }}</p>
-
-      <!-- Tags -->
       <ul class="flex flex-wrap gap-2">
         <li
           v-for="(tag, index) in work.tags"
@@ -33,6 +30,13 @@
   </div>
 </template>
 
+<style scoped>
+.work-item {
+  @apply w-full sm:max-w-md md:max-w-lg lg:max-w-full;
+}
+</style>
+
+
 <script>
 export default {
   name: 'WorkItem',
@@ -42,12 +46,11 @@ export default {
       required: true,
     },
   },
-}
+};
 </script>
 
 <style scoped>
-.tag-item {
-  @apply transition-all transform hover:scale-105 hover:shadow-sm cursor-pointer;
+.work-item {
+  @apply w-full sm:max-w-md md:max-w-lg lg:max-w-full;
 }
 </style>
-

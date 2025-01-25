@@ -1,10 +1,15 @@
 <template>
-  <section class="work-section min-h-screen bg-brand-white-1 py-5 ">
-    <h2 class="text-4xl font-extrabold text-center text-brand-blue-3">Works</h2>
-    <h3 class="flex-grow p-4 text-brand-blue-2 leading-relaxed">Here are some of my projects, where I’ve combined creativity and technical expertise to deliver practical, user-friendly solutions</h3>
-    <work-list :works="works" />
+  <section class="work-section bg-brand-white-1 py-5">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col">
+      <h2 class="text-4xl font-extrabold text-center text-brand-blue-3">Works</h2>
+      <h3 class="text-center text-brand-blue-2 leading-relaxed my-6">
+        Here are some of my projects, where I’ve combined creativity and technical expertise to deliver practical, user-friendly solutions
+      </h3>
+      <work-list :works="works" />
+    </div>
   </section>
 </template>
+
 
 <script>
 import WorkList from '@/components/Works/WorkList.vue'
@@ -51,7 +56,18 @@ export default {
 </script>
 
 <style scoped>
-.works-section {
-  @apply px-6 py-12;
+/* Refine centering specifically for WorkSection */
+@media (max-width: 850px) and (min-width: 641px) {
+  .work-section {
+    display: flex; /* Use flex for vertical alignment */
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Optional: horizontally center */
+    padding-top: 4rem; /* Add some padding at the top */
+    padding-bottom: 4rem; /* Add some padding at the bottom */
+  }
+
+  .work-section .container {
+    max-width: 800px; /* Prevent container from being too wide */
+  }
 }
 </style>
