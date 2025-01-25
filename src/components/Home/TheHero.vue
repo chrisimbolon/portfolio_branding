@@ -57,82 +57,122 @@
 </template>
 
 <script>
-import ActionButton from '@/components/shared/ActionButton.vue'
-import MainNav from '@/components/Navigation/MainNav.vue'
-import HeadLine from '@/components/Home/HeadLine.vue'
-import WorksSection from '@/components/Works/WorksSection.vue'
-import BlogSection from '@/components/Blog/BlogSection.vue'
-import ContactSection from '@/components/Contact/ContactSection.vue'
+import ActionButton from '@/components/shared/ActionButton.vue';
+import MainNav from '@/components/Navigation/MainNav.vue';
+import HeadLine from '@/components/Home/HeadLine.vue';
+import WorksSection from '@/components/Works/WorksSection.vue';
+import BlogSection from '@/components/Blog/BlogSection.vue';
+import ContactSection from '@/components/Contact/ContactSection.vue';
 
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { onMounted } from 'vue'
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { onMounted, onUnmounted } from 'vue';
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger);
 
 export default {
   name: 'TheHero',
   components: { HeadLine, MainNav, ActionButton, WorksSection, BlogSection, ContactSection },
   setup() {
-    // onMounted below
-    onMounted(() => {
-      const scroller = document.querySelector('.scrolling-left')
+    let mm = null; // Store gsap.matchMedia instance for cleanup
+    let lastScrollTop = 0; // To store the last scroll position
 
+    // Function to handle breakpoint changes
+    const handleBreakpointChange = () => {
+      const scroller = document.querySelector('.scrolling-left');
+      if (scroller) {
+        lastScrollTop = scroller.scrollTop; // Capture scroll position
+        ScrollTrigger.refresh(); // Refresh ScrollTrigger setup
+        scroller.scrollTop = lastScrollTop; // Restore scroll position
+      }
+    };
+
+    const setupScrollAnimations = () => {
+      const scroller = document.querySelector('.scrolling-left');
+      if (!scroller) return;
+
+      // Set up GSAP ScrollTrigger scroller proxy
       ScrollTrigger.scrollerProxy(scroller, {
         scrollTop(value) {
-          if (arguments.length) scroller.scrollTop = value
-          return scroller.scrollTop
+          if (arguments.length) scroller.scrollTop = value;
+          return scroller.scrollTop;
         },
-      })
+      });
 
-      ScrollTrigger.addEventListener('refresh', () => ScrollTrigger.update())
+      ScrollTrigger.addEventListener('refresh', () => ScrollTrigger.update());
+      ScrollTrigger.refresh();
 
-      gsap.utils.toArray('.section').forEach((section, index) => {
-        ScrollTrigger.matchMedia({
-          // Large screens
-          '(min-width: 851px)': function () {
-            gsap.fromTo(
-              section,
-              {
-                opacity: 0,
-                y: 80,
-                x: index % 2 === 0 ? -50 : 50,
-                scale: 0.9,
-                rotate: index % 2 === 0 ? -5 : 5,
+      // Initialize matchMedia for animations
+      mm = gsap.matchMedia();
+
+      // Media query for large screens
+      mm.add('(min-width: 851px)', () => {
+        gsap.utils.toArray('.section').forEach((section, index) => {
+          gsap.fromTo(
+            section,
+            {
+              opacity: 0,
+              y: 80,
+              x: index % 2 === 0 ? -50 : 50,
+              scale: 0.9,
+              rotate: index % 2 === 0 ? -5 : 5,
+            },
+            {
+              opacity: 1,
+              y: 0,
+              x: 0,
+              scale: 1,
+              rotate: 0,
+              duration: 1.2,
+              ease: 'power2.out',
+              delay: index * 0.15,
+              scrollTrigger: {
+                trigger: section,
+                start: 'top 70%',
+                end: 'top 10%',
+                scroller: '.scrolling-left',
+                toggleActions: 'play none none reverse',
               },
-              {
-                opacity: 1,
-                y: 0,
-                x: 0,
-                scale: 1,
-                rotate: 0,
-                duration: 1.2,
-                ease: 'power2.out',
-                delay: index * 0.15,
-                scrollTrigger: {
-                  trigger: section,
-                  start: 'top 70%',
-                  end: 'top 10%',
-                  scroller: '.scrolling-left',
-                  toggleActions: 'play none none reverse',
-                },
-              },
-            )
-          },
+            },
+          );
+        });
 
-          // Small screens
-          '(max-width: 850px)': function () {
-            ScrollTrigger.kill() // Disable ScrollTrigger for mobile
-            gsap.set(section, { opacity: 1, y: 0, x: 0, scale: 1, rotate: 0 }) // Reset styles
-          },
-        })
-      })
+        return () => {
+          // Clean up ScrollTriggers for large screens
+          ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+        };
+      });
 
-      ScrollTrigger.refresh()
-    })
+      // Media query for small screens
+      mm.add('(max-width: 850px)', () => {
+        // Reset animations for mobile
+        gsap.utils.toArray('.section').forEach(section => {
+          gsap.set(section, { opacity: 1, y: 0, x: 0, scale: 1, rotate: 0 });
+        });
+
+        return () => {
+          // No specific cleanup needed for mobile
+        };
+      });
+    };
+
+    onMounted(() => {
+      setupScrollAnimations();
+
+      // Listen for window resize and restore scroll position
+      window.addEventListener('resize', handleBreakpointChange);
+    });
+
+    onUnmounted(() => {
+      if (mm) mm.revert(); // Clean up matchMedia
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill()); // Kill all ScrollTriggers
+      window.removeEventListener('resize', handleBreakpointChange); // Remove event listener
+    });
   },
-}
+};
 </script>
+
+
 
 <style scoped>
 /* Wrapper to hold the layout */
@@ -143,7 +183,7 @@ export default {
 
 /* Left scrolling section */
 .scrolling-left {
-  overflow-y: auto; /* Changed to auto for smooth scrolling */
+  overflow-y: auto; /* Smooth scrolling */
   height: 100vh; /* Full viewport height */
   position: relative;
 }
@@ -157,34 +197,44 @@ export default {
 
 /* Individual section styling */
 .section {
-  min-height: 100vh; /* Ensure each section is full height */
+  min-height: 100vh; 
   opacity: 0;
   transform: translateY(60px);
-  padding: 2rem; /* Optional padding for content */
+  padding: 2rem; 
 }
 
+
 @media (max-width: 850px) {
+  .fixed-right{
+    display: none;
+  }
+  
+  .section {
+    opacity: 1; 
+    transform: none; 
+    padding: 1.5rem; 
+  }
+}
+
+
+/* @media (max-width: 850px) {
   .portfolio-wrapper {
-    flex-direction: column; /* Stack sections vertically */
-    height: auto; /* Let it grow with content */
+    flex-direction: column; 
+    height: auto;
   }
 
   .scrolling-left,
   .fixed-right {
-    width: 100%; /* Take full width in one-column mode */
-    height: auto; /* Remove height constraints */
-    overflow: visible; /* No scroll constraints for individual sections */
-    position: relative; /* Reset positioning */
+    width: 100%; 
+    height: auto; 
+    overflow: visible; 
+    position: relative; 
   }
 
   .fixed-right {
-    margin-bottom: 2rem; /* Add some spacing below the image/CTA section */
+    margin-bottom: 2rem;
   }
 
-  .section {
-    opacity: 1; /* Ensure the sections are visible */
-    transform: none; /* Remove GSAP initial transform on mobile */
-    padding: 1.5rem; /* Optional: adjust padding for smaller screens */
-  }
-}
+ 
+} */
 </style>
