@@ -22,8 +22,8 @@ export default {
         blue: '0 0 3px 3px #4285f4',
       },
       screens: {
-        'custom-lg': '1200px', // Add a custom breakpoint
-        'sm850': '850px', // Custom breakpoint
+        'custom-lg': '1200px', 
+        'sm850': '850px', 
       },
     },
   },

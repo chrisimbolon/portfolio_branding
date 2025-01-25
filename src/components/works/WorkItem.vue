@@ -1,8 +1,9 @@
 <template>
   <div
-    class="work-item border rounded-lg overflow-hidden shadow-lg bg-brand-white-1 text-brand-blue-3"
+    class="work-item w-full sm:max-w-md md:max-w-lg lg:max-w-2xl border rounded-lg overflow-hidden shadow-lg bg-brand-white-1 text-brand-blue-3 transition-transform transform hover:scale-105 duration-300 ease-in-out 
+    scale-100 sm850:scale-85 custom-lg:scale-90"
   >
-    <img :src="work.image" :alt="work.title" class="h-80 w-full object-cover" loading="lazy" />
+    <img :src="work.image" :alt="work.title" class="h-auto w-full object-cover" loading="lazy" />
 
     <div class="p-4">
       <div class="flex justify-between items-center mb-2">
@@ -16,7 +17,6 @@
       </div>
 
       <!-- Description -->
-      <!-- <p class="text-sm text-slate-600 mb-3">{{ work.description }}</p> -->
       <p class="text-sm text-brand-blue-2 mb-3">{{ work.description }}</p>
 
       <!-- Tags -->
@@ -46,14 +46,8 @@ export default {
 </script>
 
 <style scoped>
-.work-item {
-  max-width: 800px;
-  min-height: 400px;
-  @apply w-full sm:max-w-md md:max-w-lg lg:max-w-2xl;
-  @apply transition-transform transform hover:scale-105 duration-300 ease-in-out;
-}
-
 .tag-item {
   @apply transition-all transform hover:scale-105 hover:shadow-sm cursor-pointer;
 }
 </style>
+
