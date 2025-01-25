@@ -23,6 +23,7 @@ export default {
 
 <style scoped>
 .works-list {
+  @apply flex flex-wrap justify-center items-start gap-8 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
   @apply mt-8;
 }
 </style>

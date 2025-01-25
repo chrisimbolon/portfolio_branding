@@ -53,5 +53,6 @@ export default {
 <style scoped>
 .works-section {
   @apply px-6 py-12;
+  @apply flex flex-wrap justify-center items-center gap-8 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
 }
 </style>

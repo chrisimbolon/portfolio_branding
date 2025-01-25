@@ -49,6 +49,7 @@ export default {
 .work-item {
   max-width: 800px;
   min-height: 400px;
+  @apply w-full sm:max-w-md md:max-w-lg lg:max-w-2xl;
   @apply transition-transform transform hover:scale-105 duration-300 ease-in-out;
 }
 

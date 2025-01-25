@@ -217,24 +217,4 @@ export default {
 }
 
 
-/* @media (max-width: 850px) {
-  .portfolio-wrapper {
-    flex-direction: column; 
-    height: auto;
-  }
-
-  .scrolling-left,
-  .fixed-right {
-    width: 100%; 
-    height: auto; 
-    overflow: visible; 
-    position: relative; 
-  }
-
-  .fixed-right {
-    margin-bottom: 2rem;
-  }
-
- 
-} */
 </style>
