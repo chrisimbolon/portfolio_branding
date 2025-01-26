@@ -1,6 +1,6 @@
 <template>
   <div
-    class="main-nav mx-auto px-8 h-16 bg-white shadow-lg rounded-full flex items-center justify-center"
+    class="main-nav text-brand-blue-2 mx-auto px-8 h-10 bg-none shadow-lg rounded-md flex items-center justify-center"
   >
     <nav>
       <ul class="flex space-x-8">

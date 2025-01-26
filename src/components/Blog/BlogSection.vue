@@ -1,6 +1,9 @@
 <template>
   <section class="blog-section min-h-screen py-5">
-    <h2 class="text-3xl font-bold">Blog</h2>
+    <h2 class="text-4xl font-extrabold text-center text-brand-blue-3 mt-5 mb-4">Blog</h2>
+    <h3 class="text-center font-semibold text-brand-blue-2 leading-relaxed my-6">
+      All the articles I've posted.
+      </h3>
 
     <div v-if="loading">Loading...</div>
     <div v-else-if="error">{{ error }}</div>

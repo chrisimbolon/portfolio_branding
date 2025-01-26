@@ -2,8 +2,8 @@
   <section class="work-section bg-brand-white-1 py-5">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col">
       <h2 class="text-4xl font-extrabold text-center text-brand-blue-3">Works</h2>
-      <h3 class="text-center text-brand-blue-2 leading-relaxed my-6">
-        Here are some of my projects, where I’ve combined creativity and technical expertise to deliver practical, user-friendly solutions
+      <h3 class="text-start text-brand-blue-2 font-semibold leading-relaxed my-6">
+        Here are some of my projects, where I’ve combined creativity and technical expertise to deliver practical, user-friendly solutions.
       </h3>
       <work-list :works="works" />
     </div>

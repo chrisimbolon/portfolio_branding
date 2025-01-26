@@ -9,7 +9,7 @@
             href="mailto:christyansimbolon@mail.com"
             class="text-brand-blue-2 hover:underline text-lg font-semibold"
           >
-            christyansimbolon@mail.com
+            christyansimbolon@gmail.com
           </a>
         </div>
       </div>
