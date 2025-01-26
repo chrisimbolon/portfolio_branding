@@ -1,6 +1,7 @@
 <template>
   <div
     class="work-item relative flex flex-col border rounded-lg overflow-hidden shadow-lg bg-brand-white-1 text-brand-blue-3 transition-transform transform hover:scale-105 duration-300 ease-in-out"
+    style="min-width: 350px;"
   >
     <!-- Responsive Image -->
     <img
