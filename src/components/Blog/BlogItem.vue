@@ -15,6 +15,9 @@
         {{ blog.excerpt }}
       </p>
 
+       <!-- Published date -->
+      <p class="text-gray-500 text-sm">Published on: {{ blog.formattedCreatedAt }}</p>
+
       <!-- Read More Link -->
       <a href="#" class="text-blue-600 font-medium hover:underline text-sm"> Read More </a>
     </div>

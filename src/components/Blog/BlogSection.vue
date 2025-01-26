@@ -21,10 +21,11 @@
 </template>
 
 <script>
-import BlogModal from '@/components/Blog/BlogModal.vue'
-import { collection, getDocs } from 'firebase/firestore'
-import { db } from '@/firebase'
-import BlogList from '@/components/Blog/BlogList.vue'
+import BlogModal from '@/components/Blog/BlogModal.vue';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '@/firebase';
+import BlogList from '@/components/Blog/BlogList.vue';
+import { format } from 'date-fns'; // Import date-fns for formatting
 
 export default {
   name: 'BlogSection',
@@ -36,30 +37,39 @@ export default {
       error: null,
       showModal: false,
       selectedBlog: null,
-    }
+    };
   },
   methods: {
     openModal(blog) {
-      this.selectedBlog = blog
-      this.showModal = true
+      this.selectedBlog = blog;
+      this.showModal = true;
     },
     closeModal() {
-      this.showModal = false
-      this.selectedBlog = null
+      this.showModal = false;
+      this.selectedBlog = null;
+    },
+    formatDate(timestamp) {
+      // Ensure the timestamp is a Firestore Timestamp object
+      return format(timestamp.toDate(), 'dd-MM-yyyy HH:mm');
     },
   },
   async mounted() {
     try {
-      const querySnapshot = await getDocs(collection(db, 'blogs'))
-      const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-      console.log('Fetched Blogs:', data)
-      this.blogs = data
+      const querySnapshot = await getDocs(collection(db, 'blogs'));
+      const data = querySnapshot.docs.map((doc) => {
+        const blog = { id: doc.id, ...doc.data() };
+        // Add a formatted date field
+        blog.formattedCreatedAt = this.formatDate(blog.createdAt);
+        return blog;
+      });
+      console.log('Fetched Blogs:', data);
+      this.blogs = data;
     } catch (err) {
-      console.error('Error fetching blogs:', err)
-      this.error = 'Failed to load blog posts.'
+      console.error('Error fetching blogs:', err);
+      this.error = 'Failed to load blog posts.';
     } finally {
-      this.loading = false
+      this.loading = false;
     }
   },
-}
+};
 </script>

@@ -34,6 +34,8 @@
           id="content"
           required
           placeholder="Enter full blog content"
+          @input="adjustHeight"
+          ref="contentTextarea"
         ></textarea>
       </div>
 
@@ -162,6 +164,11 @@ export default {
       this.imageFile = null
       this.imageUrl = ''
     },
+    adjustHeight(event) {
+    const textarea = event.target;
+    textarea.style.height = 'auto'; // Reset the height
+    textarea.style.height = `${textarea.scrollHeight}px`; // Set it to the scroll height
+  },
   },
 }
 </script>
