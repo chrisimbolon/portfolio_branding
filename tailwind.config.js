@@ -23,7 +23,8 @@ export default {
       },
       screens: {
         'custom-lg': '1200px', 
-        'sm850': '850px', 
+        'sm850': '850px',
+        'xs350':'350px', 
       },
     },
   },
