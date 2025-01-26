@@ -1,12 +1,13 @@
 <template>
   <teleport to="body">
-    <!-- No need for a separate `show` check, use `v-if` to render the modal -->
+    <!-- Use v-if to conditionally render the modal -->
     <div v-if="show" class="modal-overlay" @click.self="closeModal">
       <div class="modal-content">
         <button class="close-btn" @click="closeModal">&times;</button>
         <h2 class="modal-title">{{ blog.title }}</h2>
         <img :src="blog.image" :alt="blog.title" class="modal-image" />
-        <p class="modal-text">{{ blog.content }}</p>
+        <!-- Render blog content with line breaks properly -->
+        <p class="modal-text" v-html="formattedContent"></p>
       </div>
     </div>
   </teleport>
@@ -21,6 +22,25 @@ export default {
     blog: Object,
     show: Boolean,
   },
+  computed: {
+  formattedContent() {
+    if (!this.blog || !this.blog.content) return '';
+
+    let formatted = this.blog.content;
+
+    // Replace triple backticks for multiline code blocks
+    formatted = formatted.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
+
+    // Replace single backticks for inline code
+    formatted = formatted.replace(/`(.*?)`/g, '<code>$1</code>');
+
+    // Replace \n with <br> tags to preserve line breaks outside code blocks
+    formatted = formatted.replace(/\n(?!<\/code>)/g, '<br>');
+
+    return formatted;
+  },
+},
+
   watch: {
     show(newVal) {
       const modalOverlay = document.querySelector('.modal-overlay')
@@ -106,6 +126,27 @@ export default {
   line-height: 1.6;
   color: #555;
 }
+
+pre {
+  background: #f5f5f5;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9rem;
+  color: #333;
+  margin: 1rem 0;
+}
+
+code {
+  font-family: 'Courier New', Courier, monospace;
+  background: #f5f5f5;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: #d6336c; /* Optional: Color for inline code */
+}
+
 
 /* Responsive Adjustments */
 @media (max-width: 850px) {
