@@ -151,8 +151,11 @@ export default {
 ::v-deep(p) {
   font-size: 1rem;
   line-height: 1.6;
-  color: #333;
+  color: #536878;
+  margin: 0.8755rem 0;
 }
+
+
 /* Responsive Adjustments */
 @media (max-width: 850px) {
   .modal-overlay {
