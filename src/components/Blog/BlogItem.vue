@@ -1,12 +1,12 @@
 <template>
   <div class="blog-item">
     <!-- Blog Image -->
-    <img :src="blog.image" :alt="blog.title" class="h-40 w-full object-cover" loading="lazy" />
+    <img :src="blog.image" :alt="blog.title" class="h-44 w-full object-cover" loading="lazy" />
 
     <!-- Blog Content -->
     <div class="p-4">
       <!-- Blog Title -->
-      <h3 class="text-lg font-bold text-gray-800 mb-2 line-clamp-2">
+      <h3 class="text-base font-semibold text-gray-800 mb-2 line-clamp-2">
         {{ blog.title }}
       </h3>
 
@@ -15,11 +15,19 @@
         {{ blog.excerpt }}
       </p>
 
-       <!-- Published date -->
-      <p class="text-gray-500 text-sm">Published on: {{ blog.formattedCreatedAt }}</p>
+      <!-- Published Date & Read More -->
+      <div class="flex justify-between items-center">
+        <!-- Published Date -->
+        <p class="text-gray-500 text-xs italic">Published on: {{ blog.formattedCreatedAt }}</p>
 
-      <!-- Read More Link -->
-      <a href="#" class="text-blue-600 font-medium hover:underline text-sm"> Read More </a>
+        <!-- Read More Link -->
+        <a
+          href="#"
+          class="text-brand-blue-2 font-medium hover:underline text-sm"
+        >
+          Read More
+        </a>
+      </div>
     </div>
   </div>
 </template>
@@ -38,7 +46,7 @@ export default {
 
 <style scoped>
 .blog-item {
-  @apply w-[320px] max-w-sm mx-auto border rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out bg-white;
+  @apply w-[330px] max-w-sm mx-auto border rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out bg-white;
 }
 
 .blog-item img {

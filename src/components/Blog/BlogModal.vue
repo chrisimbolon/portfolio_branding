@@ -7,7 +7,7 @@
         <h2 class="modal-title">{{ blog.title }}</h2>
         <img :src="blog.image" :alt="blog.title" class="modal-image" />
         <!-- Render blog content with line breaks properly -->
-        <p class="modal-text" v-html="formattedContent"></p>
+        <p class="modal-text font-normal" v-html="formattedContent"></p>
       </div>
     </div>
   </teleport>
@@ -127,27 +127,25 @@ export default {
   color: #555;
 }
 
-pre {
-  background: #f5f5f5;
-  padding: 1rem;
+ ::v-deep(pre) {
+  background: #264F79;
+  padding: 0.2rem 0.5rem;
   border-radius: 8px;
   overflow-x: auto;
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.9rem;
-  color: #333;
+  color: #fff;
   margin: 1rem 0;
 }
 
-code {
+::v-deep(code) {
   font-family: 'Courier New', Courier, monospace;
-  background: #f5f5f5;
-  padding: 0.2rem 0.4rem;
+  background: #264F79;
+  padding: 0.3rem 0.5rem;
   border-radius: 4px;
   font-size: 0.9rem;
-  color: #d6336c; /* Optional: Color for inline code */
+  color: #EFF4FA;
 }
-
-
 /* Responsive Adjustments */
 @media (max-width: 850px) {
   .modal-overlay {
