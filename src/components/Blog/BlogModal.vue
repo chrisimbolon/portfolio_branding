@@ -14,8 +14,9 @@
 </template>
 
 <script>
-import { gsap } from 'gsap'
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
+import { marked } from 'marked';
+import { gsap } from 'gsap';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
 export default {
   props: {
@@ -23,47 +24,39 @@ export default {
     show: Boolean,
   },
   computed: {
-  formattedContent() {
-    if (!this.blog || !this.blog.content) return '';
+    formattedContent() {
+      if (!this.blog || !this.blog.content) return '';
 
-    let formatted = this.blog.content;
-
-    // Replace triple backticks for multiline code blocks
-    formatted = formatted.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
-
-    // Replace single backticks for inline code
-    formatted = formatted.replace(/`(.*?)`/g, '<code>$1</code>');
-
-    // Replace \n with <br> tags to preserve line breaks outside code blocks
-    formatted = formatted.replace(/\n(?!<\/code>)/g, '<br>');
-
-    return formatted;
+      // Use Marked.js to convert Markdown to HTML
+      return marked(this.blog.content, {
+        breaks: true, // Convert \n to <br>
+        gfm: true,    // Enable GitHub-flavored Markdown (tables, strikethrough, etc.)
+      });
+    },
   },
-},
-
   watch: {
     show(newVal) {
-      const modalOverlay = document.querySelector('.modal-overlay')
+      const modalOverlay = document.querySelector('.modal-overlay');
       if (newVal) {
-        disableBodyScroll(modalOverlay) // Lock body scroll
-        // GSAP Animation
+        disableBodyScroll(modalOverlay); // Lock body scroll
         gsap.fromTo(
           '.modal-content',
           { opacity: 0, scale: 0.8 },
           { opacity: 1, scale: 1, duration: 0.5, ease: 'power2.out' },
-        )
+        );
       } else {
-        enableBodyScroll(modalOverlay) // Unlock body scroll
+        enableBodyScroll(modalOverlay); // Unlock body scroll
       }
     },
   },
   methods: {
     closeModal() {
-      this.$emit('close') // Emit the close event to the parent
+      this.$emit('close'); // Emit the close event to the parent
     },
   },
-}
+};
 </script>
+
 
 <style scoped>
 /* Overlay */
@@ -129,7 +122,7 @@ export default {
 
  ::v-deep(pre) {
   background: #264F79;
-  padding: 0.2rem 0.5rem;
+  padding: 0.5rem 0.5rem;
   border-radius: 8px;
   overflow-x: auto;
   font-family: 'Courier New', Courier, monospace;
@@ -141,10 +134,24 @@ export default {
 ::v-deep(code) {
   font-family: 'Courier New', Courier, monospace;
   background: #264F79;
-  padding: 0.3rem 0.5rem;
+  padding: 0.5rem 0.5rem;
   border-radius: 4px;
   font-size: 0.9rem;
   color: #EFF4FA;
+}
+
+::v-deep(h2) {
+  font-weight: bold;
+  font-size: 1.25rem;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #264F79;
+}
+
+::v-deep(p) {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
 }
 /* Responsive Adjustments */
 @media (max-width: 850px) {
