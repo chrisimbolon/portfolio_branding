@@ -4,7 +4,7 @@
     <div v-if="show" class="modal-overlay" @click.self="closeModal">
       <div class="modal-content">
         <button class="close-btn" @click="closeModal">&times;</button>
-        <h2 class="modal-title">{{ blog.title }}</h2>
+        <h1 class="modal-title">{{ blog.title }}</h1>
         <img :src="blog.image" :alt="blog.title" class="modal-image" />
         <!-- Render blog content with line breaks properly -->
         <p class="modal-text font-normal" v-html="formattedContent"></p>
@@ -101,7 +101,7 @@ export default {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 1rem;
-  color: #333;
+  color: #264F79;
 }
 
 /* Image Styling */
@@ -145,14 +145,14 @@ export default {
   font-size: 1.25rem;
   margin-top: 1.25rem;
   margin-bottom: 0.5rem;
-  color: #264F79;
+  color: #31669B;
 }
 
 ::v-deep(p) {
   font-size: 1rem;
   line-height: 1.6;
   color: #536878;
-  margin: 0.8755rem 0;
+  margin: 0.875rem 0;
 }
 
 
@@ -167,6 +167,20 @@ export default {
     max-width: 100%; /* Take up full width on smaller screens */
     border-radius: 0; /* Remove border radius for seamless stacking */
     padding: 1.5rem;
+  }
+
+  .modal-title {
+    font-size: 1.25rem; /* Slightly smaller font for smaller screens */
+    text-align: center; /* Optional: Center-align the text */
+    margin-bottom: 0.75rem; /* Adjust spacing if necessary */
+  }
+
+  ::v-deep(h2) {
+    font-size: 1rem;
+  }
+
+  ::v-deep(p) {
+    font-size: 0.9375rem;
   }
 
   .close-btn {

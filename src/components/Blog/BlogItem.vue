@@ -18,7 +18,7 @@
       <!-- Published Date & Read More -->
       <div class="flex justify-between items-center">
         <!-- Published Date -->
-        <p class="text-gray-500 text-xs italic">Published on: {{ blog.formattedCreatedAt }}</p>
+        <p class="text-gray-500 text-xs italic">Posted on: {{ blog.formattedCreatedAt }}</p>
 
         <!-- Read More Link -->
         <a
