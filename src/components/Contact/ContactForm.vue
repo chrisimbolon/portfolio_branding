@@ -1,8 +1,8 @@
 <template>
   <div class="contact-form-section py-0">
     <div class="flex flex-col gap-4 mb-5 text-gray-700">
-      <div class="flex items-center gap-3">
-        <h3 class="text-lg font-medium">Reach out via</h3>
+      <div class="caontact-info-wrapper flex items-center gap-3">
+        <h3 class="text-base font-medium text-brand-blue-1">Reach out via</h3>
         <div class="icon-wrap flex items-center gap-2">
           <i class="fa-solid fa-envelope text-brand-blue-2 text-2xl"></i>
           <a
@@ -13,12 +13,12 @@
           </a>
         </div>
       </div>
-      <h3 class="text-lg font-medium">Or drop a message below</h3>
+      <h3 class="text-base font-medium text-brand-blue-1">Or drop a message below</h3>
     </div>
-    <div class="max-w-lg mx-auto border border-gray-400 bg-none shadow-lg rounded-lg p-6">
+    <div class="max-w-lg mx-auto border border-gray-400 bg-none shadow-lg rounded-lg p-6 text-brand-blue-2">
       <form @submit.prevent="handleSubmit" class="space-y-6">
         <div>
-          <label class="block font-medium mb-2 text-gray-700">Name</label>
+          <label class="block font-medium mb-2 text-brand-blue-2">Name</label>
           <input
             v-model="formData.name"
             type="text"
@@ -28,7 +28,7 @@
           />
         </div>
         <div>
-          <label class="block font-medium mb-2 text-gray-700">Email</label>
+          <label class="block font-medium mb-2 text-brand-blue-2">Email</label>
           <input
             v-model="formData.email"
             type="email"
@@ -38,7 +38,7 @@
           />
         </div>
         <div>
-          <label class="block font-medium mb-2 text-gray-700">Message</label>
+          <label class="block font-medium mb-2 text-brand-blue-2">Message</label>
           <textarea
             v-model="formData.message"
             class="w-full p-3 border border-gray-400 rounded-lg bg-gray-200 focus:ring focus:ring-blue-300"
@@ -121,5 +121,19 @@ export default {
   /* background-color: #f9f9f9; */
   max-width: 600px;
   margin: 0 auto;
+}
+
+@media (max-width: 850px) {
+  .caontact-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    font-size: 1rem;
+  }
+
+  .contact-form-section {
+    min-width: 320px;
+    margin: 0 auto;
+  }
 }
 </style>

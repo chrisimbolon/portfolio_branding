@@ -9,7 +9,7 @@
     </h1>
 
     <!-- Subtitle -->
-    <div ref="headlineSubtitle" class="font-bold opacity-0 mb-10 mt-0">
+    <div ref="headlineSubtitle" class="font-bold opacity-0 mb-12 mt-0">
       <p>A passionate Full-Stack Web Developer and I'm crafting</p>
       <p>my journey into meaningful Digital Solutions with</p>
     </div>
@@ -78,7 +78,7 @@ export default {
             duration: 1.2,
             ease: 'power2.out',
           },
-          '-=0.3' // Overlap animation by 0.3s
+          '-=0.6' // Overlap animation by 0.3s
         );
     },
   },
@@ -114,7 +114,7 @@ p {
     transparent 80%
   );
   transform: skewX(-20deg); /* Diagonal shine */
-  animation: shine-animation 2s infinite; /* Infinite shine animation */
+  animation: shine-animation 3s infinite; /* Infinite shine animation */
 }
 
 /* Keyframes for Shine Effect */

@@ -6,12 +6,12 @@
     <!-- Blog Content -->
     <div class="p-4">
       <!-- Blog Title -->
-      <h3 class="text-base font-semibold text-gray-800 mb-2 line-clamp-2">
+      <h3 class="text-base font-semibold text-brand-blue-2 mb-2 line-clamp-2">
         {{ blog.title }}
       </h3>
 
       <!-- Blog Excerpt -->
-      <p class="text-gray-600 text-sm mb-4 line-clamp-3">
+      <p class="text-brand-grey-1 text-sm mb-4 line-clamp-3">
         {{ blog.excerpt }}
       </p>
 
