@@ -28,21 +28,19 @@
         class="image-wrapper group rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col items-center relative mb-4"
       >
         <!-- Profile Image -->
-
-        <!-- Profile Image -->
-<img
-  class="w-full sm850:max-w-[60%] lg:max-w-[500px] xl:max-w-[600px] h-auto object-contain"
-  srcset="
-    /images/chris-closeup-250.webp 300w,
-    /images/chris-closeup-400.webp 500w,
-    /images/chris-closeup-600.webp 600w"
-  sizes="(max-width: 600px) 100vw, (max-width: 1024px) 60vw, 500px"
-  src="/images/chris-closeup.webp"
-  width="600" height="700"
-  alt="Chris Closeup"
-/>
-
-      
+        <img
+          class="w-full sm850:max-w-[60%] lg:max-w-[500px] xl:max-w-[600px] h-auto object-contain"
+          srcset="
+            /images/chris-closeup-250.webp 300w,
+            /images/chris-closeup-400.webp 500w,
+            /images/chris-closeup-600.webp 600w
+          "
+          sizes="(max-width: 600px) 100vw, (max-width: 1024px) 60vw, 500px"
+          src="/images/chris-closeup.webp"
+          width="600"
+          height="700"
+          alt="Chris Closeup"
+        />
 
         <!-- Overlay -->
         <div
@@ -230,7 +228,6 @@ export default {
   scrollbar-width: none; /* For Firefox */
   -ms-overflow-style: none; /* For IE/Edge */
 }
-
 
 /* Sticky right section */
 .fixed-right {
