@@ -1,10 +1,12 @@
 <template>
   <teleport to="body">
-    <div v-if="show" class="modal-overlay" ref="modalOverlay" @click.self="closeModal">
-      <div class="modal-content" ref="modalContent">
+    <!-- Use v-if to conditionally render the modal -->
+    <div v-if="show" class="modal-overlay" @click.self="closeModal">
+      <div class="modal-content">
         <button class="close-btn" @click="closeModal">&times;</button>
         <h1 class="modal-title">{{ blog.title }}</h1>
         <img :src="blog.image" :alt="blog.title" class="modal-image" />
+        <!-- Render blog content with line breaks properly -->
         <p class="modal-text font-normal" v-html="formattedContent"></p>
       </div>
     </div>
@@ -21,42 +23,40 @@ export default {
     blog: Object,
     show: Boolean,
   },
-  emits: ['close'], // Add this line to declare the 'close' event explicitly
   computed: {
     formattedContent() {
       if (!this.blog || !this.blog.content) return '';
+
+      // Use Marked.js to convert Markdown to HTML
       return marked(this.blog.content, {
-        breaks: true,
-        gfm: true,
+        breaks: true, // Convert \n to <br>
+        gfm: true,    // Enable GitHub-flavored Markdown (tables, strikethrough, etc.)
       });
     },
   },
   watch: {
     show(newVal) {
-      this.$nextTick(() => {
-        const modalOverlay = this.$refs.modalOverlay;
-        const modalContent = this.$refs.modalContent;
-        if (newVal && modalOverlay && modalContent) {
-          disableBodyScroll(modalOverlay);
-          gsap.fromTo(modalContent, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.5, ease: 'power2.out' });
-        } else {
-          enableBodyScroll(modalOverlay);
-        }
-      });
+      const modalOverlay = document.querySelector('.modal-overlay');
+      if (newVal) {
+        disableBodyScroll(modalOverlay); // Lock body scroll
+        gsap.fromTo(
+          '.modal-content',
+          { opacity: 0, scale: 0.8 },
+          { opacity: 1, scale: 1, duration: 0.5, ease: 'power2.out' },
+        );
+      } else {
+        enableBodyScroll(modalOverlay); // Unlock body scroll
+      }
     },
   },
   methods: {
     closeModal() {
       console.log("Close button clicked! Emitting 'close' event."); 
-      this.$emit('close');
+      this.$emit('close'); // Emit the close event to the parent
     },
-  },
-  beforeUnmount() {
-    if (this.$refs.modalOverlay) enableBodyScroll(this.$refs.modalOverlay);
   },
 };
 </script>
-
 
 
 <style scoped>

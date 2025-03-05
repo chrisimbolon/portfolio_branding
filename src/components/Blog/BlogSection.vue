@@ -5,8 +5,8 @@
       All the articles I've posted.
       </h3>
 
-    <div v-if="loading">Loading...</div>
-    <div v-else-if="error">{{ error }}</div>
+    <div v-if="loading" data-test="loading">Loading...</div>
+    <div v-else-if="error" data-test="error-message">{{ error }}</div>
     <div v-else>
       <blog-list :blogs="blogs" @blog-click="openModal" />
     </div>
