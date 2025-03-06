@@ -175,13 +175,47 @@ it('renders large amounts of blog posts correctly', async () => {
   expect(wrapper.findComponent({ name: 'BlogModal' }).props('show')).toBe(false);
 });
 
-it('opens and closes the blog modal on click', async () => {
+    it('opens and closes the blog modal on click', async () => {
+    const mockBlogs = [
+      {
+        id: '1',
+        title: 'Blog Post',
+        content: 'Content',
+        createdAt: { toDate: () => new Date() }
+      }
+    ];
+
+    getDocs.mockResolvedValue({
+      docs: mockBlogs.map(blog => ({ id: blog.id, data: () => blog })),
+    });
+
+    const wrapper = mount(BlogSection);
+    await flushPromises();
+
+    // Find and click a blog item
+    const blogItem = wrapper.findComponent(BlogList);
+    blogItem.vm.$emit('blog-click', mockBlogs[0]); // Simulate blog click
+    await flushPromises();
+
+    // Modal should be visible
+    expect(wrapper.findComponent({ name: 'BlogModal' }).props('show')).toBe(true);
+    expect(wrapper.findComponent({ name: 'BlogModal' }).props('blog')).toEqual(mockBlogs[0]);
+
+    // Close modal
+    wrapper.findComponent({ name: 'BlogModal' }).vm.$emit('close');
+    await flushPromises();
+    expect(wrapper.findComponent({ name: 'BlogModal' }).props('show')).toBe(false);
+    });
+
+   
+
+it('formats the createdAt date correctly', async () => {
   const mockBlogs = [
     {
       id: '1',
-      title: 'Blog Post',
-      content: 'Content',
-      createdAt: { toDate: () => new Date() }
+      title: 'First Blog',
+      content: 'This is the first blog.',
+      createdAt: { toDate: () => new Date('2025-03-01T10:00:00Z') }
     }
   ];
 
@@ -192,21 +226,10 @@ it('opens and closes the blog modal on click', async () => {
   const wrapper = mount(BlogSection);
   await flushPromises();
 
-  // Find and click a blog item
-  const blogItem = wrapper.findComponent(BlogList);
-  blogItem.vm.$emit('blog-click', mockBlogs[0]); // Simulate blog click
-  await flushPromises();
+  const formattedDate = new Date('2025-03-01T10:00:00Z').toLocaleDateString();
+  expect(wrapper.text()).toContain(formattedDate);
 
-  // Modal should be visible
-  expect(wrapper.findComponent({ name: 'BlogModal' }).props('show')).toBe(true);
-  expect(wrapper.findComponent({ name: 'BlogModal' }).props('blog')).toEqual(mockBlogs[0]);
-
-  // Close modal
-  wrapper.findComponent({ name: 'BlogModal' }).vm.$emit('close');
-  await flushPromises();
-  expect(wrapper.findComponent({ name: 'BlogModal' }).props('show')).toBe(false);
 });
 
-  
 
 })
