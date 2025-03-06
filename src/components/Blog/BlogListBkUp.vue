@@ -1,12 +1,6 @@
 <template>
   <div class="blog-list grid grid-cols-1 custom-lg:grid-cols-2 gap-6">
-    <blog-item
-      v-for="(blog, index) in blogs"
-      :key="blog.id"
-      :blog="blog"
-      :data-test="`blog-item-${index}`"
-      @click="handleBlogClick(blog)"
-    />
+    <blog-item v-for="blog in blogs" :key="blog.id" :blog="blog" @click="handleBlogClick(blog)" />
   </div>
 </template>
 
@@ -32,7 +26,6 @@ export default {
   },
 }
 </script>
-
 
 <style scoped>
 .blog-list {

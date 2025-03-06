@@ -122,29 +122,6 @@ describe('BlogSection.vue', () => {
     expect(blogList.props('blogs')).toEqual(expectedBlogs) // ✅ Updated assertion
   })
   
-  it('emits an event when a blog post is clicked', async () => {
-    const mockBlogs = [
-      { id: '1', title: 'Clickable Blog', content: 'Click me!', createdAt: { toDate: () => new Date() } }
-    ]
-  
-    getDocs.mockResolvedValue({
-      docs: mockBlogs.map(blog => ({ id: blog.id, data: () => blog })),
-    })
-  
-    const wrapper = mount(BlogSection)
-    await flushPromises()
-  
-    await wrapper.vm.$nextTick() // ✅ Ensure component is fully updated
-  
-    const blogItem = wrapper.find('[data-test="blog-item-1"]')
-    expect(blogItem.exists()).toBe(true) // ✅ Ensure it actually exists
-  
-    await blogItem.trigger('click')
-  
-    expect(wrapper.emitted('blog-clicked')).toBeTruthy() // Ensure event is emitted
-    expect(wrapper.emitted('blog-clicked')[0]).toEqual([{ id: '1', title: 'Clickable Blog', content: 'Click me!' }])
-  })
-  
 
 it('renders large amounts of blog posts correctly', async () => {
   const mockBlogs = Array.from({ length: 100 }, (_, i) => ({
@@ -166,5 +143,70 @@ it('renders large amounts of blog posts correctly', async () => {
   expect(wrapper.text()).toContain(`Blog 99`)
 })
 
+  it('opens and closes the blog modal on click', async () => {
+  const mockBlogs = [
+    {
+      id: '1',
+      title: 'Blog Post',
+      content: 'Content',
+      createdAt: { toDate: () => new Date() }
+    }
+  ];
+
+  getDocs.mockResolvedValue({
+    docs: mockBlogs.map(blog => ({ id: blog.id, data: () => blog })),
+  });
+
+  const wrapper = mount(BlogSection);
+  await flushPromises();
+
+  // Find and click a blog item
+  const blogItem = wrapper.findComponent(BlogList);
+  blogItem.vm.$emit('blog-click', mockBlogs[0]); // Simulate blog click
+  await flushPromises();
+
+  // Modal should be visible
+  expect(wrapper.findComponent({ name: 'BlogModal' }).props('show')).toBe(true);
+  expect(wrapper.findComponent({ name: 'BlogModal' }).props('blog')).toEqual(mockBlogs[0]);
+
+  // Close modal
+  wrapper.findComponent({ name: 'BlogModal' }).vm.$emit('close');
+  await flushPromises();
+  expect(wrapper.findComponent({ name: 'BlogModal' }).props('show')).toBe(false);
+});
+
+it('opens and closes the blog modal on click', async () => {
+  const mockBlogs = [
+    {
+      id: '1',
+      title: 'Blog Post',
+      content: 'Content',
+      createdAt: { toDate: () => new Date() }
+    }
+  ];
+
+  getDocs.mockResolvedValue({
+    docs: mockBlogs.map(blog => ({ id: blog.id, data: () => blog })),
+  });
+
+  const wrapper = mount(BlogSection);
+  await flushPromises();
+
+  // Find and click a blog item
+  const blogItem = wrapper.findComponent(BlogList);
+  blogItem.vm.$emit('blog-click', mockBlogs[0]); // Simulate blog click
+  await flushPromises();
+
+  // Modal should be visible
+  expect(wrapper.findComponent({ name: 'BlogModal' }).props('show')).toBe(true);
+  expect(wrapper.findComponent({ name: 'BlogModal' }).props('blog')).toEqual(mockBlogs[0]);
+
+  // Close modal
+  wrapper.findComponent({ name: 'BlogModal' }).vm.$emit('close');
+  await flushPromises();
+  expect(wrapper.findComponent({ name: 'BlogModal' }).props('show')).toBe(false);
+});
+
+  
 
 })

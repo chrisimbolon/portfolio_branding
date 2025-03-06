@@ -22,11 +22,14 @@
       <!-- Published Date & Read More -->
       <div class="flex justify-between items-center">
         <!-- Published Date -->
-        <p class="text-gray-500 text-xs italic">Posted on: {{ formattedCreatedAt }}</p>       
-        <!-- Read More Link -->
+        <p class="text-gray-500 text-xs italic">
+          Posted on: {{ formattedCreatedAt }}
+        </p>       
+        <!-- Read More Link (Prevent default click behavior) -->
         <a
           href="#"
           class="text-brand-blue-2 font-medium hover:underline text-sm"
+          @click.prevent
         >
           Read More
         </a>
@@ -46,14 +49,12 @@ export default {
   },
   computed: {
     formattedCreatedAt() {
-      if (this.blog.createdAt) {
-        return this.blog.createdAt.toDate().toLocaleDateString();
-      }
-      return 'No date available';
+      return this.blog.createdAt ? this.blog.createdAt.toDate().toLocaleDateString() : 'No date available';
     },
   },
 };
 </script>
+
 
 <style scoped>
 .blog-item {
