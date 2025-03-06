@@ -7,11 +7,12 @@
 
     <div v-if="loading" data-test="loading">Loading...</div>
     <div v-else-if="error" data-test="error-message">{{ error }}</div>
+    <div v-else-if="blogs.length === 0" data-test="no-blogs">No blogs found</div>
     <div v-else>
       <blog-list :blogs="blogs" @blog-click="openModal" />
     </div>
 
-    <!-- Pass showModal and selectedBlog to BlogModal -->
+    
     <blog-modal
       :show="showModal"
       :blog="selectedBlog"
@@ -19,6 +20,7 @@
     />
   </section>
 </template>
+
 
 <script>
 import BlogModal from '@/components/Blog/BlogModal.vue';
@@ -59,7 +61,7 @@ export default {
       const data = querySnapshot.docs.map((doc) => {
         const blog = { id: doc.id, ...doc.data() };
         // Add a formatted date field
-        blog.formattedCreatedAt = this.formatDate(blog.createdAt);
+        blog.formattedCreatedAt = blog.createdAt ? this.formatDate(blog.createdAt) : "No date available";
         return blog;
       });
       console.log('Fetched Blogs:', data);
