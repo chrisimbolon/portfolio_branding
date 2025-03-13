@@ -24,7 +24,9 @@ jobs:
         run: |
           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} <<EOF
             cd /home/apps/portfolio
-            git pull origin main   # Pull latest changes
-            docker-compose down    # Stop old containers
-            docker-compose up -d --build  # Rebuild & start fresh containers
+            git pull origin main  # Pull latest changes
+            docker stop portfolio-container || true  # Stop old container if exists
+            docker rm portfolio-container || true  # Remove old container if exists
+            docker build -t portfolio-app .  # Build the new image
+            docker run -d -p 80:80 -v /home/apps/portfolio:/app --name portfolio-container portfolio-app  # Run container
           EOF
