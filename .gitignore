@@ -37,3 +37,5 @@ test-results/
 playwright-report/
 
 content.txt
+
+.env.build
