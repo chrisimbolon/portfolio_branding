@@ -1,0 +1,42 @@
+name: Deploy to DigitalOcean
+
+on:
+  push:
+    branches:
+      - main  # Change this if your main branch has a different name
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' > ~/.ssh/github-actions-key  # Remove Windows-style line endings (just in case)
+          chmod 600 ~/.ssh/github-actions-key
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Test SSH Connection
+        run: ssh -o StrictHostKeyChecking=no -i ~/.ssh/github-actions-key ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo 'GitHub Actions SSH is working!'"
+
+      - name: Deploy to DigitalOcean
+        run: |
+          ssh -i ~/.ssh/github-actions-key ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} <<EOF
+            set -e  # Exit script immediately if any command fails
+            mkdir -p /home/apps/portfolio && cd /home/apps/portfolio
+            git pull origin main  # Pull latest changes
+
+            # Ensure Docker is running
+            sudo systemctl restart docker
+            docker ps -a  # Debugging: List containers
+
+            docker stop portfolio-container || true  
+            docker rm -f portfolio-container || true  
+            docker ps -a  # List all containers after removal (to confirm)
+            docker build -t portfolio-app .  # Build the new image
+            docker run -d -p 80:80 --name portfolio-container portfolio-app  # Run new container
+          EOF
