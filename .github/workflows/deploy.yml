@@ -20,33 +20,43 @@ jobs:
           chmod 600 ~/.ssh/github-actions-key
           ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Test SSH Connection
-        run: ssh -o StrictHostKeyChecking=no -i ~/.ssh/github-actions-key ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "echo 'GitHub Actions SSH is working!'"
+      - name: Build and Push Docker Image
+        run: |
+          docker build -t ghcr.io/${{ github.repository }}/portfolio-app .
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+          docker push ghcr.io/${{ github.repository }}/portfolio-app
 
       - name: Deploy to DigitalOcean
         run: |
           ssh -i ~/.ssh/github-actions-key ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} <<'EOF'
-            set -ex  # Stop on error and print all commands
+            set -ex
 
             echo "🔹 Checking if Docker is installed and running..."
             docker --version
             sudo systemctl status docker || echo "⚠️ Docker is not running!"
 
-            echo "🔹 Navigating to project directory..."
-            cd /home/apps/portfolio || { echo "❌ Folder not found!"; exit 1; }
-
-            echo "🔹 Pulling latest changes from GitHub..."
-            git pull origin main || { echo "❌ Git pull failed!"; exit 1; }
-
-            echo "🔹 Stopping and removing old container if exists..."
+            echo "🔹 Stopping and removing old container..."
             docker stop portfolio-container || true
             docker rm -f portfolio-container || true
 
-            echo "🔹 Building new Docker image..."
-            docker build -t portfolio-app . || { echo "❌ Docker build failed!"; exit 1; }
+            echo "🔹 Pulling latest Docker image from GitHub Container Registry..."
+            echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+            docker pull ghcr.io/${{ github.repository }}/portfolio-app
 
             echo "🔹 Running new container..."
-            docker run -d -p 80:80 --name portfolio-container portfolio-app || { echo "❌ Docker run failed!"; exit 1; }
+            docker run -d -p 80:80 \
+              --name portfolio-container \
+              -e VITE_API_KEY="${{ secrets.VITE_API_KEY }}" \
+              -e VITE_AUTH_DOMAIN="${{ secrets.VITE_AUTH_DOMAIN }}" \
+              -e VITE_PROJECT_ID="${{ secrets.VITE_PROJECT_ID }}" \
+              -e VITE_STORAGE_BUCKET="${{ secrets.VITE_STORAGE_BUCKET }}" \
+              -e VITE_MESSAGING_SENDER_ID="${{ secrets.VITE_MESSAGING_SENDER_ID }}" \
+              -e VITE_APP_ID="${{ secrets.VITE_APP_ID }}" \
+              -e VITE_MEASUREMENT_ID="${{ secrets.VITE_MEASUREMENT_ID }}" \
+              -e VITE_CLOUDINARY_CLOUD_NAME="${{ secrets.VITE_CLOUDINARY_CLOUD_NAME }}" \
+              -e VITE_CLOUDINARY_API_KEY="${{ secrets.VITE_CLOUDINARY_API_KEY }}" \
+              -e VITE_CLOUDINARY_API_SECRET="${{ secrets.VITE_CLOUDINARY_API_SECRET }}" \
+              ghcr.io/${{ github.repository }}/portfolio-app
 
             echo "✅ Deployment completed successfully!"
           EOF
