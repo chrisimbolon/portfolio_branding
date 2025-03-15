@@ -20,30 +20,23 @@ jobs:
           chmod 600 ~/.ssh/github-actions-key
           ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Build and Push Docker Image
-        run: |
-          docker build -t ghcr.io/${{ github.repository }}/portfolio-app .
-          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-          docker push ghcr.io/${{ github.repository }}/portfolio-app
-
       - name: Deploy to DigitalOcean
         run: |
           ssh -i ~/.ssh/github-actions-key ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} <<'EOF'
             set -ex
 
-            echo "🔹 Checking if Docker is installed and running..."
-            docker --version
-            sudo systemctl status docker || echo "⚠️ Docker is not running!"
+            echo "🔹 Navigating to project directory..."
+            cd /home/apps/portfolio || { echo "❌ Folder not found!"; exit 1; }
 
-            echo "🔹 Stopping and removing old container..."
+            echo "🔹 Pulling latest changes from GitHub..."
+            git pull origin main || { echo "❌ Git pull failed!"; exit 1; }            
+
+            echo "🔹 Building the Docker image..."
             docker stop portfolio-container || true
-            docker rm -f portfolio-container || true
+            docker rm portfolio-container || true
+            docker build -t portfolio-app .
 
-            echo "🔹 Pulling latest Docker image from GitHub Container Registry..."
-            echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-            docker pull ghcr.io/${{ github.repository }}/portfolio-app
-
-            echo "🔹 Running new container..."
+            echo "🔹 Running the container..."
             docker run -d -p 80:80 \
               --name portfolio-container \
               -e VITE_API_KEY="${{ secrets.VITE_API_KEY }}" \
@@ -54,9 +47,8 @@ jobs:
               -e VITE_APP_ID="${{ secrets.VITE_APP_ID }}" \
               -e VITE_MEASUREMENT_ID="${{ secrets.VITE_MEASUREMENT_ID }}" \
               -e VITE_CLOUDINARY_CLOUD_NAME="${{ secrets.VITE_CLOUDINARY_CLOUD_NAME }}" \
-              -e VITE_CLOUDINARY_API_KEY="${{ secrets.VITE_CLOUDINARY_API_KEY }}" \
-              -e VITE_CLOUDINARY_API_SECRET="${{ secrets.VITE_CLOUDINARY_API_SECRET }}" \
-              ghcr.io/${{ github.repository }}/portfolio-app
+              -e VITE_CLOUDINARY_UPLOAD_PRESET="${{ secrets.VITE_CLOUDINARY_UPLOAD_PRESET }}" \
+              portfolio-app
 
             echo "✅ Deployment completed successfully!"
           EOF
