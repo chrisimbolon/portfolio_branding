@@ -22,19 +22,18 @@ ARG VITE_MEASUREMENT_ID
 ARG VITE_CLOUDINARY_CLOUD_NAME
 ARG VITE_CLOUDINARY_UPLOAD_PRESET
 
-# Set them as environment variables inside the container
-ENV VITE_API_KEY=$VITE_API_KEY
-ENV VITE_AUTH_DOMAIN=$VITE_AUTH_DOMAIN
-ENV VITE_PROJECT_ID=$VITE_PROJECT_ID
-ENV VITE_STORAGE_BUCKET=$VITE_STORAGE_BUCKET
-ENV VITE_MESSAGING_SENDER_ID=$VITE_MESSAGING_SENDER_ID
-ENV VITE_APP_ID=$VITE_APP_ID
-ENV VITE_MEASUREMENT_ID=$VITE_MEASUREMENT_ID
-ENV VITE_CLOUDINARY_CLOUD_NAME=$VITE_CLOUDINARY_CLOUD_NAME
-ENV VITE_CLOUDINARY_UPLOAD_PRESET=$VITE_CLOUDINARY_UPLOAD_PRESET
+# Create .env.production inside the container before build
+RUN echo "VITE_API_KEY=${VITE_API_KEY}" >> .env.production && \
+    echo "VITE_AUTH_DOMAIN=${VITE_AUTH_DOMAIN}" >> .env.production && \
+    echo "VITE_PROJECT_ID=${VITE_PROJECT_ID}" >> .env.production && \
+    echo "VITE_STORAGE_BUCKET=${VITE_STORAGE_BUCKET}" >> .env.production && \
+    echo "VITE_MESSAGING_SENDER_ID=${VITE_MESSAGING_SENDER_ID}" >> .env.production && \
+    echo "VITE_APP_ID=${VITE_APP_ID}" >> .env.production && \
+    echo "VITE_MEASUREMENT_ID=${VITE_MEASUREMENT_ID}" >> .env.production && \
+    echo "VITE_CLOUDINARY_CLOUD_NAME=${VITE_CLOUDINARY_CLOUD_NAME}" >> .env.production && \
+    echo "VITE_CLOUDINARY_UPLOAD_PRESET=${VITE_CLOUDINARY_UPLOAD_PRESET}" >> .env.production
 
-
-# Build the project (Vite will use these environment variables)
+# Build the project (Vite will now detect .env.production)
 RUN npm run build
 
 # Use Nginx for serving the built files
