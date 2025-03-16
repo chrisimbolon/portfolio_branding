@@ -36,17 +36,16 @@ RUN echo "VITE_API_KEY=${VITE_API_KEY}" >> .env.production && \
 # Build the project (Vite will now detect .env.production)
 RUN npm run build
 
-# Use Caddy for serving the built files
-FROM caddy:alpine
+# Use a minimal base image to just store built files
+FROM alpine
+
+# Set working directory
+WORKDIR /app
 
 # Copy built files from previous stage
-COPY --from=builder /app/dist /usr/share/caddy/
+COPY --from=builder /app/dist /app
 
-# Copy custom Caddyfile (if needed)
-COPY Caddyfile /etc/caddy/Caddyfile
 
-# Expose ports 80 and 443 for HTTP and HTTPS
-EXPOSE 80 443
+EXPOSE 80
 
-# Start Caddy
-CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile"]
+

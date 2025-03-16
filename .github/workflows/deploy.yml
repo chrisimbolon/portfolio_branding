@@ -31,14 +31,10 @@ jobs:
             echo "🔹 Pulling latest changes from GitHub..."
             git pull origin main || { echo "❌ Git pull failed!"; exit 1; }
 
-            echo "🔹 Stopping and removing old container..."
-            docker stop portfolio-container || true
-            docker rm portfolio-container || true
+            echo "🔹 Removing old build..."
+            rm -rf /var/www/portfolio/* || true
 
-            echo "🔹 Removing old image to free space..."
-            docker rmi portfolio-app || true
-
-            echo "🔹 Building the Docker image with environment variables..."
+            echo "🔹 Building the Docker image to generate static files..."
             docker build \
               --build-arg VITE_API_KEY="${{ secrets.VITE_API_KEY }}" \
               --build-arg VITE_AUTH_DOMAIN="${{ secrets.VITE_AUTH_DOMAIN }}" \
@@ -51,8 +47,13 @@ jobs:
               --build-arg VITE_CLOUDINARY_UPLOAD_PRESET="${{ secrets.VITE_CLOUDINARY_UPLOAD_PRESET }}" \
               -t portfolio-app .
 
-            echo "🔹 Running the new container with Caddy..."
-            docker run -d -p 80:80 -p 443:443 --name portfolio-container portfolio-app
+            echo "🔹 Extracting static files from the built container..."
+            docker create --name temp-container portfolio-app
+            docker cp temp-container:/app /var/www/portfolio
+            docker rm temp-container
+
+            echo "🔹 Restarting Caddy to serve the new files..."
+            systemctl restart caddy
 
             echo "✅ Deployment completed successfully!"
           EOF
