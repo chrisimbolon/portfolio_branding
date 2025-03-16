@@ -101,7 +101,7 @@ export default {
           behavior: 'smooth',
         })
 
-        history.pushState(null, '', `#${id}`) // Update the URL hash without refreshing the page
+        history.pushState(null, '', `#${id}`) 
       }
     },
   },

@@ -36,17 +36,17 @@ RUN echo "VITE_API_KEY=${VITE_API_KEY}" >> .env.production && \
 # Build the project (Vite will now detect .env.production)
 RUN npm run build
 
-# Use Nginx for serving the built files
-FROM nginx:alpine
+# Use Caddy for serving the built files
+FROM caddy:alpine
 
 # Copy built files from previous stage
-COPY --from=builder /app/dist /usr/share/nginx/html
+COPY --from=builder /app/dist /usr/share/caddy/
 
-# Copy custom Nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Copy custom Caddyfile (if needed)
+COPY Caddyfile /etc/caddy/Caddyfile
 
-# Expose port 80
-EXPOSE 80
+# Expose ports 80 and 443 for HTTP and HTTPS
+EXPOSE 80 443
 
-# Start Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Start Caddy
+CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile"]

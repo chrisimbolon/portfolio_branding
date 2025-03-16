@@ -29,11 +29,16 @@ jobs:
             cd /home/apps/portfolio || { echo "❌ Folder not found!"; exit 1; }
 
             echo "🔹 Pulling latest changes from GitHub..."
-            git pull origin main || { echo "❌ Git pull failed!"; exit 1; }            
+            git pull origin main || { echo "❌ Git pull failed!"; exit 1; }
 
-            echo "🔹 Building the Docker image with environment variables..."
+            echo "🔹 Stopping and removing old container..."
             docker stop portfolio-container || true
             docker rm portfolio-container || true
+
+            echo "🔹 Removing old image to free space..."
+            docker rmi portfolio-app || true
+
+            echo "🔹 Building the Docker image with environment variables..."
             docker build \
               --build-arg VITE_API_KEY="${{ secrets.VITE_API_KEY }}" \
               --build-arg VITE_AUTH_DOMAIN="${{ secrets.VITE_AUTH_DOMAIN }}" \
@@ -46,8 +51,8 @@ jobs:
               --build-arg VITE_CLOUDINARY_UPLOAD_PRESET="${{ secrets.VITE_CLOUDINARY_UPLOAD_PRESET }}" \
               -t portfolio-app .
 
-            echo "🔹 Running the container..."
-            docker run -d -p 80:80 --name portfolio-container portfolio-app
+            echo "🔹 Running the new container with Caddy..."
+            docker run -d -p 80:80 -p 443:443 --name portfolio-container portfolio-app
 
             echo "✅ Deployment completed successfully!"
           EOF
