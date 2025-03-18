@@ -1,4 +1,0 @@
-chrisimbolon.dev {
-    root * /usr/share/caddy
-    file_server
-}

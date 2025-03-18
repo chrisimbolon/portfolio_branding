@@ -1,4 +1,4 @@
-name: Deploy to DigitalOcean
+name: Deploy Portfolio to DigitalOcean
 
 on:
   push:
@@ -31,10 +31,10 @@ jobs:
             echo "🔹 Pulling latest changes from GitHub..."
             git pull origin main || { echo "❌ Git pull failed!"; exit 1; }
 
-            echo "🔹 Removing old build..."
-            rm -rf /var/www/portfolio/* || true
+            echo "🔹 Removing old portfolio container..."
+            docker rm -f portfolio-container || true
 
-            echo "🔹 Building the Docker image to generate static files..."
+            echo "🔹 Building new portfolio container..."
             docker build \
               --build-arg VITE_API_KEY="${{ secrets.VITE_API_KEY }}" \
               --build-arg VITE_AUTH_DOMAIN="${{ secrets.VITE_AUTH_DOMAIN }}" \
@@ -47,13 +47,11 @@ jobs:
               --build-arg VITE_CLOUDINARY_UPLOAD_PRESET="${{ secrets.VITE_CLOUDINARY_UPLOAD_PRESET }}" \
               -t portfolio-app .
 
-            echo "🔹 Extracting static files from the built container..."
-            docker create --name temp-container portfolio-app
-            docker cp temp-container:/app /var/www/portfolio
-            docker rm temp-container
+            echo "🔹 Running new portfolio container..."
+            docker run -d --name portfolio-container -p 3000:80 portfolio-app
 
-            echo "🔹 Restarting Caddy to serve the new files..."
-            systemctl restart caddy
+            echo "🔹 Restarting Caddy to apply changes..."
+            docker restart caddy-container
 
             echo "✅ Deployment completed successfully!"
           EOF
