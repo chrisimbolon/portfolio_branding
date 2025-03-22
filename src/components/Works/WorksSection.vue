@@ -35,6 +35,7 @@ export default {
           description: 'A tasty experiment in stacking pizzas and stacking delicacy! 🍕💡',
           image: '/images/FullstackPizzaCard.webp',
           tags: ['Javascript', 'HTML', 'CSS'],
+          link: 'https://chrisimbolon.dev/fullstackpizza',
         },
         {
           id: 3,
@@ -42,6 +43,7 @@ export default {
           description: 'Kickstart your coaching game! Organize Taekwondo coaches like a pro.',
           image: '/images/DjangoTaekwondoCard.webp',
           tags: ['Python', 'Django', 'Bootstrap', 'PostgreSQL'],
+          link: 'https://chrisimbolon.dev/fullstackpizza',
         },
         {
           id: 4,
@@ -49,6 +51,7 @@ export default {
           description: 'Pin your travels, track your adventures, and relive your journeys!',
           image: '/images/PlanetWanderCard.webp',
           tags: ['Javascript', 'React', 'HTML', 'CSS'],
+          link: 'https://chrisimbolon.dev/planetwander',
         },
       ],
     }
