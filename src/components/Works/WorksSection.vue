@@ -43,7 +43,7 @@ export default {
           description: 'Kickstart your coaching game! Organize Taekwondo coaches like a pro.',
           image: '/images/DjangoTaekwondoCard.webp',
           tags: ['Python', 'Django', 'Bootstrap', 'PostgreSQL'],
-          link: 'https://chrisimbolon.dev/fullstackpizza',
+          link: 'https://chrisimbolon.dev/fullstack-pizza',
         },
         {
           id: 4,
