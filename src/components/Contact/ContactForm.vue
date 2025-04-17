@@ -63,7 +63,7 @@
     <p class="p-4 text-brand-blue-2">connect with me elsewhere on the web →</p>
     <div class="icon-wrap flex items-center gap-3 text-2xl">
       <a
-        href="https://www.linkedin.com/in/your-profile"
+        href="https://www.linkedin.com/in/christyan-simbolon-60a854360/"
         target="_blank"
         rel="noopener noreferrer"
         class="text-brand-blue-3 hover:text-brand-blue-2 transition-colors"
