@@ -48,7 +48,7 @@ jobs:
               -t portfolio-app .
 
             echo "🔹 Running new portfolio container..."
-            docker run -d --name portfolio-container --network web_network -p 3000:80 portfolio-app
+            docker run -d --name portfolio-container --network caddy-net -p 3000:80 portfolio-app
 
             echo "✅ Deployment completed successfully!"
           EOF

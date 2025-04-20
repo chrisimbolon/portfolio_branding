@@ -6,13 +6,15 @@
     <contact-form />
     <!-- Skills Section -->
     <skill-list />
+    <built-upon />
   </div>
 </template>
 <script>
 import ContactForm from './ContactForm.vue'
 import SkillList from './SkillList.vue'
+import BuiltUpon from './BuiltUpon.vue';
 export default {
   name: 'ContactSection',
-  components: { ContactForm, SkillList },
+  components: { ContactForm, SkillList, BuiltUpon },
 }
 </script>
