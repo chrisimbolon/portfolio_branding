@@ -26,7 +26,7 @@ export default {
           title: 'Randomdots.id',
           description: 'Discover and share hidden gems—cool places to eat, drink, and have a blast!',
           image: '/images/RandomdotsCard.webp',
-          tags: ['Node.js', 'Express', 'MongoDB', 'Bootstrap'],
+          tags: ['Node.js', 'Express', 'MongoDB', 'Cloudinary','Bootstrap'],
           link: 'https://randomdots.id',
         },
         {
