@@ -1,5 +1,5 @@
 
-# 💼 Christyan Simbolon — Developer Portfolio
+# Christyan Simbolon — Developer Portfolio
 
 This is my official portfolio site - Christyan Simbolon, I'm a fullstack web developer with experience in Python/Django, JavaScript, Vue.js, React, Docker, and cloud-native deployments.
 
@@ -58,17 +58,17 @@ App is available locally at : http://localhost:5173/
 
 🔄 Deployment (CI/CD)
 
-The project is deployed to a DigitalOcean Droplet using GitHub Actions:
+The project is deployed to a DigitalOcean Droplet using GitHub Actions, 
+using the following steps:
 
-SSH into server on push to main
+1. SSH into server on push to main
+2. Rebuilds Docker image with production environment variables
+3. Replaces old container with the new one
+4. Connected to caddy-net for reverse proxy via Caddy
 
-Rebuilds Docker image with production environment variables
+    See deploy.yml for details.
 
-Replaces old container with the new one
-
-Connected to caddy-net for reverse proxy via Caddy
-
-See deploy.yml for details.
+# Project Structure
 
 ```
 portfolio/
@@ -82,10 +82,16 @@ portfolio/
 ├── deploy.yml
 └── README.md
 ```
-To run the project locally using Docker:
 
+# 🙋‍♂️ Author
 
-# portfolio-chris
+**Christyan Simbolon**
+
+- 🌐 [Portfolio](https://chrisimbolon.dev)
+- 💻 [GitHub](https://github.com/chrisimbolon)
+- 🔗 [LinkedIn](https://linkedin.com/in/christyan-simbolon-60a854360)
+
+---
 
 This template should help get you started developing with Vue 3 in Vite.
 
@@ -121,18 +127,7 @@ npm run build
 npm run test:unit
 ```
 
-### Run End-to-End Tests with [Playwright](https://playwright.dev)
-
-```sh
-# Install browsers for the first run
-npx playwright install
-
 # When testing on CI, must build the project first
 npm run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
