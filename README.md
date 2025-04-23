@@ -19,14 +19,14 @@ Responsive, mobile-first design
 
 "Works" section highlighting major projects:
 
--RandomDots.id
--PlanetWander
--Django Taekwondo Coach
--FullstackPizza
+- ***[RandomDots.id](https://randomdots.id/)
+- ***[PlanetWander](https://chrisimbolon.dev/planetwander/)
+- ***[Django Taekwondo Coach](https://taekwondo-coach.chrisimbolon.dev/)
+- ***[FullstackPizza](https://chrisimbolon.dev/fullstack-pizza/)
 
-Clean, typography-focused layout using Open Sans
-Custom color palette and subtle animations for personal branding
-Built with developer-first practices (linter, prebuild env injection, CI/CD)
+- ***Clean, typography-focused layout using Open Sans
+- ***Custom color palette and subtle animations for personal branding
+- ***Built with developer-first practices (linter, prebuild env injection, CI/CD)
 
 
 # 🐳 Local Development
@@ -56,7 +56,7 @@ docker run -d --name portfolio-container --network caddy-net -p 3000:80 portfoli
 
 App is available locally at : http://localhost:5173/
 
-🔄 Deployment (CI/CD)
+# 🔄 Deployment (CI/CD)
 
 The project is deployed to a DigitalOcean Droplet using GitHub Actions, 
 using the following steps:
@@ -127,7 +127,9 @@ npm run build
 npm run test:unit
 ```
 
-# When testing on CI, must build the project first
+### When testing on CI, must build the project first
+
+```
 npm run build
 ```
 
