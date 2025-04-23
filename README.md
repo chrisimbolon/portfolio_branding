@@ -19,14 +19,14 @@ Responsive, mobile-first design
 
 "Works" section highlighting major projects:
 
-- ***[RandomDots.id](https://randomdots.id/)
-- ***[PlanetWander](https://chrisimbolon.dev/planetwander/)
-- ***[Django Taekwondo Coach](https://taekwondo-coach.chrisimbolon.dev/)
-- ***[FullstackPizza](https://chrisimbolon.dev/fullstack-pizza/)
+- [RandomDots.id](https://randomdots.id/)
+- [PlanetWander](https://chrisimbolon.dev/planetwander/)
+- [Django Taekwondo Coach](https://taekwondo-coach.chrisimbolon.dev/)
+- [FullstackPizza](https://chrisimbolon.dev/fullstack-pizza/)
 
-- ***Clean, typography-focused layout using Open Sans
-- ***Custom color palette and subtle animations for personal branding
-- ***Built with developer-first practices (linter, prebuild env injection, CI/CD)
+- Clean, typography-focused layout using Open Sans
+- Custom color palette and subtle animations for personal branding
+- Built with developer-first practices (linter, prebuild env injection, CI/CD)
 
 
 # 🐳 Local Development
@@ -93,9 +93,9 @@ portfolio/
 
 ---
 
-This template should help get you started developing with Vue 3 in Vite.
 
-## Recommended IDE Setup
+
+# 🧪 Development Guide (Optional)
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
