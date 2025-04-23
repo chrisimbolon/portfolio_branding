@@ -24,9 +24,11 @@ Responsive, mobile-first design
 - [Django Taekwondo Coach](https://taekwondo-coach.chrisimbolon.dev/)
 - [FullstackPizza](https://chrisimbolon.dev/fullstack-pizza/)
 
-- Clean, typography-focused layout using Open Sans
-- Custom color palette and subtle animations for personal branding
-- Built with developer-first practices (linter, prebuild env injection, CI/CD)
+Clean, typography-focused layout using Open Sans
+
+Custom color palette and subtle animations for personal branding
+
+Built with developer-first practices (linter, prebuild env injection, CI/CD)
 
 
 # 🐳 Local Development
@@ -68,7 +70,7 @@ using the following steps:
 
     See deploy.yml for details.
 
-# Project Structure
+# 📁 Project Structure
 
 ```
 portfolio/
@@ -129,7 +131,7 @@ npm run test:unit
 
 ### When testing on CI, must build the project first
 
-```
+```sh
 npm run build
 ```
 
