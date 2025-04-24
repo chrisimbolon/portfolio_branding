@@ -8,7 +8,7 @@ RUN npm install
 
 COPY . .
 
-# Pass Firebase & Cloudinary env variables at build time
+# Passing Firebase & Cloudinary env variables at build time
 ARG VITE_API_KEY
 ARG VITE_AUTH_DOMAIN
 ARG VITE_PROJECT_ID
@@ -19,7 +19,7 @@ ARG VITE_MEASUREMENT_ID
 ARG VITE_CLOUDINARY_CLOUD_NAME
 ARG VITE_CLOUDINARY_UPLOAD_PRESET
 
-# Create .env.production
+# Creating .env.production
 RUN echo "VITE_API_KEY=${VITE_API_KEY}" >> .env.production && \
     echo "VITE_AUTH_DOMAIN=${VITE_AUTH_DOMAIN}" >> .env.production && \
     echo "VITE_PROJECT_ID=${VITE_PROJECT_ID}" >> .env.production && \
@@ -30,19 +30,19 @@ RUN echo "VITE_API_KEY=${VITE_API_KEY}" >> .env.production && \
     echo "VITE_CLOUDINARY_CLOUD_NAME=${VITE_CLOUDINARY_CLOUD_NAME}" >> .env.production && \
     echo "VITE_CLOUDINARY_UPLOAD_PRESET=${VITE_CLOUDINARY_UPLOAD_PRESET}" >> .env.production
 
-# Build the project
+# Building the project
 RUN npm run build
 
-# Stage 2: Serve the static files with NGINX
+# Stage 2: Serving the static files with NGINX
 FROM nginx:alpine
 
-# Remove default NGINX config
+# Removing default NGINX config
 RUN rm /etc/nginx/conf.d/default.conf
 
-# Copy custom NGINX config
+# Copying custom NGINX config
 COPY nginx.conf /etc/nginx/conf.d/
 
-# Copy the built React app to NGINX's serving directory
+# Copying the built React app to NGINX's serving directory
 COPY --from=builder /app/dist /usr/share/nginx/html
 
 EXPOSE 80
