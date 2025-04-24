@@ -64,15 +64,15 @@ export default {
   }
 }
 
-.work-item .p-4 {
-    @media (max-width: 640px) {
-    @apply text-center p-1 ; 
+@media (max-width: 640px) {
+  .work-item .p-4 {
+    @apply text-center p-1 ; /* Center-align text for very small screens */
   }
 }
 
 @media (max-width: 480px) {
   h3 {
-    @apply text-sm; 
+    @apply text-sm; /* Make it even smaller for extra-small phones */
   }
 }
 
