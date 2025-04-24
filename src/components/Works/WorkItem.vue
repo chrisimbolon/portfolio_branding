@@ -60,19 +60,19 @@ export default {
 
 @media (max-width: 850px) {
   .work-item .p-4 {
-    @apply p-2; /* Reduce padding for smaller screens */
+    @apply p-2; 
   }
 }
 
-@media (max-width: 640px) {
-  .work-item .p-4 {
-    @apply text-center p-1 ; /* Center-align text for very small screens */
+.work-item .p-4 {
+    @media (max-width: 640px) {
+    @apply text-center p-1 ; 
   }
 }
 
 @media (max-width: 480px) {
   h3 {
-    @apply text-sm; /* Make it even smaller for extra-small phones */
+    @apply text-sm; 
   }
 }
 
