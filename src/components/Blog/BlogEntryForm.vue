@@ -74,8 +74,8 @@ export default {
       title: '',
       excerpt: '',
       content: '',
-      imageFile: null, // Holds the selected file
-      imageUrl: '', // Stores the uploaded image URL
+      imageFile: null, 
+      imageUrl: '', 
       uploadProgress: null,
       successMessage: '',
       errorMessage: '',
@@ -132,12 +132,12 @@ export default {
       this.errorMessage = ''
 
       try {
-        // Step 1: Upload the image to Cloudinary
+        // Step 1: Uploading the image to Cloudinary
         if (this.imageFile) {
           await this.uploadImageToCloudinary()
         }
 
-        // Step 2: Prepare the blog post data
+        // Step 2: Preparing the blog post data
         const newBlog = {
           title: this.title,
           excerpt: this.excerpt,
@@ -146,7 +146,7 @@ export default {
           createdAt: serverTimestamp(),
         }
 
-        // Step 3: Save blog post to Firestore
+        // Step 3: Saving blog post to Firestore
         const docRef = await addDoc(collection(db, 'blogs'), newBlog)
         this.successMessage = `Blog posted successfully! ID: ${docRef.id}`
         this.clearForm()
@@ -156,7 +156,7 @@ export default {
       }
     },
 
-    // Clear Form
+    // Clearing Form
     clearForm() {
       this.title = ''
       this.excerpt = ''
