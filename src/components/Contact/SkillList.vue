@@ -42,7 +42,7 @@ export default {
   name: 'SkillList',
   data() {
     return {
-      hoveredSkill: null, // Tracks which skill is being hovered
+      hoveredSkill: null, 
       skills: [
         {
           name: 'Front-End and Responsive Design',
