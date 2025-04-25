@@ -31,18 +31,6 @@
   </div>
 </template>
 
-<!-- <script>
-export default {
-  name: 'BlogItem',
-  props: {
-    blog: {
-      type: Object,
-      required: true,
-    },
-  },
-}
-</script> -->
-
 <script>
 export default {
   name: 'BlogItem',
