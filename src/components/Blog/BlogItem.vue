@@ -59,7 +59,7 @@ export default {
 <style scoped>
 .blog-item {
   @apply w-[330px] max-w-sm mx-auto border rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out bg-white;
-  cursor: pointer; /* Add pointer cursor to indicate it's clickable */
+  cursor: pointer; 
 }
 
 .blog-item img {
