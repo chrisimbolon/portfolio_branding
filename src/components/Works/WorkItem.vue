@@ -72,7 +72,7 @@ export default {
 
 @media (max-width: 480px) {
   h3 {
-    @apply text-sm; /* Make it even smaller for extra-small phones */
+    @apply text-sm; /* for extra-small phones */
   }
 }
 
