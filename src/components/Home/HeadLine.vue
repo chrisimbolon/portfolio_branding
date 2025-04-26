@@ -41,14 +41,14 @@ export default {
     },
   },
   mounted() {
-    this.animateHeadline(); // Trigger headline animation on mount
-    this.startRotation(); // Start phrase rotation
+    this.animateHeadline(); // Triggering headline animation on mount
+    this.startRotation(); // Starting phrase rotation
   },
   methods: {
     startRotation() {
       setInterval(() => {
         this.currentPhraseIndex = (this.currentPhraseIndex + 1) % this.phrases.length;
-      }, 3000); // Change phrase every 3 seconds
+      }, 3000); 
     },
     animateHeadline() {
       const tl = gsap.timeline();
