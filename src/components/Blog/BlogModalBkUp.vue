@@ -29,8 +29,8 @@ export default {
 
       // Use Marked.js to convert Markdown to HTML
       return marked(this.blog.content, {
-        breaks: true, // Convert \n to <br>
-        gfm: true,    // Enable GitHub-flavored Markdown (tables, strikethrough, etc.)
+        breaks: true, // Converting \n to <br>
+        gfm: true,    // Enabling GitHub-flavored Markdown (tables, strikethrough, etc.)
       });
     },
   },
