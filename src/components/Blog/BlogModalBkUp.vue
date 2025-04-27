@@ -52,7 +52,7 @@ export default {
   methods: {
     closeModal() {
       console.log("Close button clicked! Emitting 'close' event."); 
-      this.$emit('close'); // Emit the close event to the parent
+      this.$emit('close'); // Emitting the close event to the parent
     },
   },
 };
