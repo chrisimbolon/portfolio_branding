@@ -166,8 +166,8 @@ export default {
     },
     adjustHeight(event) {
     const textarea = event.target;
-    textarea.style.height = 'auto'; // Reset the height
-    textarea.style.height = `${textarea.scrollHeight}px`; // Set it to the scroll height
+    textarea.style.height = 'auto'; // Reseting the height
+    textarea.style.height = `${textarea.scrollHeight}px`; // Setting it to the scroll height
   },
   },
 }
