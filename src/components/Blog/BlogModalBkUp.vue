@@ -27,7 +27,7 @@ export default {
     formattedContent() {
       if (!this.blog || !this.blog.content) return '';
 
-      // Use Marked.js to convert Markdown to HTML
+      // Using Marked.js to convert Markdown to HTML
       return marked(this.blog.content, {
         breaks: true, // Converting \n to <br>
         gfm: true,    // Enabling GitHub-flavored Markdown (tables, strikethrough, etc.)
