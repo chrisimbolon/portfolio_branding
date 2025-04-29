@@ -118,7 +118,7 @@ export default {
 
 <style scoped>
 .contact-form-section {
-  /* background-color: #f9f9f9; */
+  
   max-width: 600px;
   margin: 0 auto;
 }
