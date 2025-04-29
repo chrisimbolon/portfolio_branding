@@ -106,7 +106,7 @@ export default {
         const messagesCollection = collection(db, 'messages')
         await addDoc(messagesCollection, this.formData)
         this.submissionMessage = 'Thank you for reaching out!'
-        this.formData = { name: '', email: '', message: '' } // Reset form
+        this.formData = { name: '', email: '', message: '' } // Resetting form
       } catch (error) {
         console.error('Error submitting message:', error)
         this.submissionMessage = 'An error occurred. Please try again later.'
