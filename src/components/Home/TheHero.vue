@@ -115,7 +115,7 @@ export default {
       const scroller = document.querySelector('.scrolling-left')
       if (scroller) {
         lastScrollTop = scroller.scrollTop // Capture scroll position
-        ScrollTrigger.refresh() // Refresh ScrollTrigger setup
+        ScrollTrigger.refresh() // Refreshing ScrollTrigger setup
         scroller.scrollTop = lastScrollTop // Restore scroll position
       }
     }
