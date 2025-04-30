@@ -107,7 +107,7 @@ export default {
   },
 
   setup() {
-    let mm = null // Store gsap.matchMedia instance for cleanup
+    let mm = null // Storing gsap.matchMedia instance for cleanup
     let lastScrollTop = 0 // To store the last scroll position
 
     // Function to handle breakpoint changes
