@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     handleBlogClick(blog) {
-      this.$emit('blog-click', blog) // Emit the clicked blog
+      this.$emit('blog-click', blog) // Emiting the clicked blog
     },
   },
   mounted() {
