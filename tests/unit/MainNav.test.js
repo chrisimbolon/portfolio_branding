@@ -68,7 +68,7 @@ describe('MainNav.vue', () => {
         expect(links[index].text()).toBe(item.text)
       
         const actualHref = links[index].attributes('href')
-        const normalizedHref = actualHref.replace('#/#', '#/') // Normalize extra hash
+        const normalizedHref = actualHref.replace('#/#', '#/') // Normalizing extra hash
       
         expect(normalizedHref).toBe(item.url)
       })
