@@ -1,6 +1,6 @@
 export default {
   extends: [
-    'stylelint-config-tailwindcss', // Tailwind-specific rules
+    'stylelint-config-tailwindcss', 
   ],
   rules: {
     
