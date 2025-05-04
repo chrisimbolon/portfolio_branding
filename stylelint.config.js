@@ -3,7 +3,7 @@ export default {
     'stylelint-config-tailwindcss', // Tailwind-specific rules
   ],
   rules: {
-    // You can add custom rules here if needed
+    
     'at-rule-no-unknown': [
       true,
       {
