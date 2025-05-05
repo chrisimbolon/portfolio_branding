@@ -8,7 +8,7 @@ export default {
       true,
       {
         ignoreAtRules: [
-          'tailwind', // Allow Tailwind-specific at-rules
+          'tailwind', // Allowing Tailwind-specific at-rules
           'apply',
           'layer',
           'screen',
