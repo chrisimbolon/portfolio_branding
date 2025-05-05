@@ -42,7 +42,7 @@ RUN rm /etc/nginx/conf.d/default.conf
 # Copying custom NGINX config
 COPY nginx.conf /etc/nginx/conf.d/
 
-# Copying the built React app to NGINX's serving directory
+# Copying the built Vue app to NGINX's serving directory
 COPY --from=builder /app/dist /usr/share/nginx/html
 
 EXPOSE 80
